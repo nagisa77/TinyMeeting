@@ -1,0 +1,10 @@
+Target dependency graph (4 targets)
+Target 'ALL_BUILD' in project 'TimsMeetingClient'
+➜ Explicit dependency on target 'TimsMeetingClient' in project 'TimsMeetingClient'
+➜ Explicit dependency on target 'ZERO_CHECK' in project 'TimsMeetingClient'
+Target 'TimsMeetingClient' in project 'TimsMeetingClient'
+➜ Explicit dependency on target 'ZERO_CHECK' in project 'TimsMeetingClient'
+➜ Explicit dependency on target 'TimsMeetingClient_autogen' in project 'TimsMeetingClient'
+Target 'TimsMeetingClient_autogen' in project 'TimsMeetingClient'
+➜ Explicit dependency on target 'ZERO_CHECK' in project 'TimsMeetingClient'
+Target 'ZERO_CHECK' in project 'TimsMeetingClient' (no dependencies)

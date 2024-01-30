@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "EA346C64-19BD-43DF-B9B5-B5C6E42032E1"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "560FBF8E-80AD-4E8A-A372-E1C4BCAB9AA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meeting_model.cc"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "MeetingModel::QuickMeeting()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "560FBF8E-80AD-4E8A-A372-E1C4BCAB9AA9 - 935c320936190834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeetingModel::QuickMeeting()::$_0::operator()(QNetworkReply*) const"
+                  moduleName = "TimsMeetingClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jt/Desktop/TinyMeeting/meeting_model.cc"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "46">
+               </Location>
+               <Location
+                  uuid = "560FBF8E-80AD-4E8A-A372-E1C4BCAB9AA9 - 935c320936190b3c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeetingModel::QuickMeeting()::$_0::operator()(QNetworkReply*) const"
+                  moduleName = "TimsMeetingClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jt/Desktop/TinyMeeting/meeting_model.cc"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

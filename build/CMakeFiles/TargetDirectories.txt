@@ -1,0 +1,4 @@
+/Users/jt/Desktop/TinyMeeting/build/CMakeFiles/TimsMeetingClient.dir
+/Users/jt/Desktop/TinyMeeting/build/CMakeFiles/TimsMeetingClient_autogen.dir
+/Users/jt/Desktop/TinyMeeting/build/CMakeFiles/ALL_BUILD.dir
+/Users/jt/Desktop/TinyMeeting/build/CMakeFiles/ZERO_CHECK.dir
