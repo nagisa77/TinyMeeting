@@ -49,7 +49,6 @@ void CameraCapture::InjectFrame(AVFRAME frame) {
   for (auto listener : listeners_) {
     listener->OnCameraFrame(frame);
   }
-  ReleaseAVFRAME(frame);
 }
 
 void CameraCapture::StartCapture() {

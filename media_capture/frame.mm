@@ -5,15 +5,24 @@ extern "C" {
 }
 #import <CoreMedia/CoreMedia.h>
 
+AVFRAME::AVFRAME() {
+}
+
+AVFRAME::~AVFRAME() {
+  if (frame_) {
+    ReleaseAVFRAME(frame_);
+  }
+}
+
 AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   CMSampleBufferRef sampleBuffer = (CMSampleBufferRef)ref;
   if (!sampleBuffer) {
-    return nullptr;
+    return AVFRAME();
   }
 
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   if (!imageBuffer) {
-    return nullptr;
+    return AVFRAME();
   }
 
   CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
@@ -26,7 +35,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   AVFrame* frame = av_frame_alloc();
   if (!frame) {
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return nullptr;
+    return AVFRAME();
   }
 
   OSType pixelFormat = CVPixelBufferGetPixelFormatType(imageBuffer);
@@ -41,7 +50,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   default:
     av_frame_free(&frame);
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return nullptr;
+    return AVFRAME();
   }
 
   frame->format = avPixelFormat;
@@ -52,7 +61,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
                      avPixelFormat, 1) < 0) {
     av_frame_free(&frame);
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return nullptr;
+    return AVFRAME();
   }
 
   if (avPixelFormat == AV_PIX_FMT_UYVY422 ||
@@ -64,10 +73,12 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   }
 
   CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-  return frame;
+  AVFRAME f;
+  f.frame_ = frame;
+  return f;
 }
 
-void ReleaseAVFRAME(AVFRAME frame) {
+void ReleaseAVFRAME(void* frame) {
   if (!frame) {
     return;
   }

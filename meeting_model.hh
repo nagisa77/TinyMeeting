@@ -52,7 +52,7 @@ private:
 private:
   std::set<MeetingModelDelegate*> delegates_;
   std::string current_meeting_id_;
-  UserStatus self_user_status_;
+  struct UserStatus self_user_status_;
 };
 
 #endif  // MEETING_MODEL_HH
