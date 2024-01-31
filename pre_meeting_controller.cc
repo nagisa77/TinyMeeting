@@ -1,6 +1,7 @@
 #include "pre_meeting_controller.hh"
 
 #include <spdlog/spdlog.h>
+#include "window_manager.hh"
 
 PreMeetingController::PreMeetingController(PreMeetingView* view)
 : view_(view) {
@@ -17,6 +18,7 @@ void PreMeetingController::HandleQuickMeeting() {
 
 void PreMeetingController::JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) {
   if (result == JoinMeetingResult::kJoinMeetingResultSuccess) {
-    
+    WindowManager::getInstance().PopPremeetingView();
+    WindowManager::getInstance().PushInmeetingView();
   }
 }

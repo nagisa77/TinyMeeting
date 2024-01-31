@@ -341,6 +341,85 @@ int JoinMeetingProtocol::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS = QtMocHelpers::stringData(
+    "RequestUpStreamProtocol"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[24];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS_t qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS = {
+    {
+        QT_MOC_LITERAL(0, 23)   // "RequestUpStreamProtocol"
+    },
+    "RequestUpStreamProtocol"
+};
+#undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
+
+Q_CONSTINIT static const uint qt_meta_data_CLASSRequestUpStreamProtocolENDCLASS[] = {
+
+ // content:
+      12,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
+Q_CONSTINIT const QMetaObject RequestUpStreamProtocol::staticMetaObject = { {
+    QMetaObject::SuperData::link<BaseProtocol::staticMetaObject>(),
+    qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSRequestUpStreamProtocolENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<RequestUpStreamProtocol, std::true_type>
+    >,
+    nullptr
+} };
+
+void RequestUpStreamProtocol::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
+}
+
+const QMetaObject *RequestUpStreamProtocol::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *RequestUpStreamProtocol::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSRequestUpStreamProtocolENDCLASS.stringdata0))
+        return static_cast<void*>(this);
+    return BaseProtocol::qt_metacast(_clname);
+}
+
+int RequestUpStreamProtocol::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = BaseProtocol::qt_metacall(_c, _id, _a);
+    return _id;
+}
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSUserStatusProtocolENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSUserStatusProtocolENDCLASS = QtMocHelpers::stringData(
     "UserStatusProtocol"

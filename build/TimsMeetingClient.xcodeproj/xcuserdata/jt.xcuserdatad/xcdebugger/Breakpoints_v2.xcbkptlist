@@ -14,8 +14,8 @@
             filePath = "meeting_model.cc"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "MeetingModel::QuickMeeting()"
             landmarkType = "7">
             <Locations>
@@ -49,7 +49,38 @@
                   endingLineNumber = "31"
                   offsetFromSymbolStart = "628">
                </Location>
+               <Location
+                  uuid = "560FBF8E-80AD-4E8A-A372-E1C4BCAB9AA9 - 935c320936190b3c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeetingModel::QuickMeeting()::$_0::operator()(QNetworkReply*) const"
+                  moduleName = "TimsMeetingClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jt/Desktop/TinyMeeting/meeting_model.cc"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "77">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0E9CEDC-CFA4-4441-82BB-E0971ADABFBE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meeting_model.cc"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "MeetingModel::EnableMedia(media_type, enable)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

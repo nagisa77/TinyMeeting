@@ -49,6 +49,21 @@ private:
   std::string meeting_id_;
 };
 
+class RequestUpStreamProtocol : public BaseProtocol {
+  Q_OBJECT
+
+ public:
+  explicit RequestUpStreamProtocol(const std::string& user_id, const std::string& meeting_id, int media_type, QObject* parent = nullptr);
+  ~RequestUpStreamProtocol() override;
+
+  void MakeRequest(const ResponseHandler& handler) override;
+  
+private:
+  std::string user_id_;
+  std::string meeting_id_;
+  int media_type_;
+};
+
 class UserStatusProtocol : public BaseProtocol {
   Q_OBJECT
 

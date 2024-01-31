@@ -9,7 +9,7 @@
 /* Begin PBXAggregateTarget section */
 		3F6783B97A01432184BFFC2E /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 4DB1ED94B22441108C02EAB4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = DC7A590EF57A4FBD8253CDBA /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
 				783B8EBACBBFBDB0643DB85E /* Generate CMakeFiles/ZERO_CHECK */,
 			);
@@ -20,25 +20,25 @@
 		};
 		8ED46B58F8484802AD4E50F0 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 195EA332FEC84F289482C8F1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = E8EB402A86FD408284DA6971 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
 				83764B315F09DE55681B1936 /* Generate CMakeFiles/ALL_BUILD */,
 			);
 			dependencies = (
-				AC9C911A057B42E2B73A9FD5 /* PBXTargetDependency */,
-				3A94A5965BAE4AA6ADACE358 /* PBXTargetDependency */,
+				4929AAC96B2A4C0189552DB3 /* PBXTargetDependency */,
+				D5CEA8A196104371BEF23005 /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
 		C3527DC5918E48A7ABB105C1 /* TimsMeetingClient_autogen */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 1BB310A4AC784859A4F85DA5 /* Build configuration list for PBXAggregateTarget "TimsMeetingClient_autogen" */;
+			buildConfigurationList = 36ED6DA8251248ED8F15FD0C /* Build configuration list for PBXAggregateTarget "TimsMeetingClient_autogen" */;
 			buildPhases = (
 				2D6296B98CE2ED4314ADED0C /* Generate CMakeFiles/TimsMeetingClient_autogen */,
 			);
 			dependencies = (
-				7074E7F23F77476A82FA9376 /* PBXTargetDependency */,
+				6DAEDC355EBD4D22BA9F6A8E /* PBXTargetDependency */,
 			);
 			name = TimsMeetingClient_autogen;
 			productName = TimsMeetingClient_autogen;
@@ -46,92 +46,103 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		00713171149A448A8E11B654 /* /usr/local/lib/QtGui.framework */ = {isa = PBXBuildFile; fileRef = 9C31C42F4050424F98A211A7 /* /usr/local/lib/QtGui.framework */; };
-		0346D766A4C746D3905E7C6F /* /Users/jt/Desktop/TinyMeeting/http_service.cc */ = {isa = PBXBuildFile; fileRef = 6BE2B6CA61184EABA70CB1B5 /* /Users/jt/Desktop/TinyMeeting/http_service.cc */; };
-		087B5C3B279C4183B04B46E9 /* /usr/local/lib/QtWidgets.framework */ = {isa = PBXBuildFile; fileRef = F8F30F214C9C4E69A917517E /* /usr/local/lib/QtWidgets.framework */; };
-		0BA06433935148E5A8F27E78 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = CD93BB795CBF4AE79CF550AA /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */; };
-		110131F0C0E54C32A8750822 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */ = {isa = PBXBuildFile; fileRef = 44D637F5F280406DB44E9DC6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */; };
-		403033CBBF654310B00E87A2 /* /Users/jt/Desktop/TinyMeeting/http_service.hh */ = {isa = PBXBuildFile; fileRef = E0DD79E6D03E4FE1B4413B84 /* /Users/jt/Desktop/TinyMeeting/http_service.hh */; };
-		43DC389391C649A993D07E16 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */ = {isa = PBXBuildFile; fileRef = A91C046FCA2F466DB8547FE6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */; };
-		50A31E358B094BD9A3264D87 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */ = {isa = PBXBuildFile; fileRef = 238485035A264C0396CF81CB /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */; };
-		55C82CE8B60C4EDAB09A0CE9 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */ = {isa = PBXBuildFile; fileRef = 109938AA3D5D497AAD5650C5 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */; };
-		5B700843A0FD4D0C96C5FB05 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */ = {isa = PBXBuildFile; fileRef = 7243B8614F654227854A2C62 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */; };
-		5D80CA49B3AA4A548E6D6B1D /* /usr/local/lib/QtCore.framework */ = {isa = PBXBuildFile; fileRef = 6C1AE17FCED94FC1A6E593F1 /* /usr/local/lib/QtCore.framework */; };
-		62318FB4E45241F599599DD3 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */ = {isa = PBXBuildFile; fileRef = 3B357C99D8614A988DACA8E0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */; };
-		62FC77589DDE42DC9146CE23 /* /Users/jt/Desktop/TinyMeeting/main.cc */ = {isa = PBXBuildFile; fileRef = F95B0810792C46149CA57CEC /* /Users/jt/Desktop/TinyMeeting/main.cc */; };
-		6BC79631731848569C1FD4C6 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */ = {isa = PBXBuildFile; fileRef = 414A284FD01041D59BC9E4D3 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */; };
-		700F3AFCF47640DCB1973C8F /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */ = {isa = PBXBuildFile; fileRef = 8D95A025AA6744A8958FC65F /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */; };
-		7C40F8B3CAB248D09693D1E2 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */ = {isa = PBXBuildFile; fileRef = 3D7C76950CBF41AEA457BEBB /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */; };
-		9AB8BB43A89047859233FADD /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */ = {isa = PBXBuildFile; fileRef = C1DE87AB7C4A4AA2949C876D /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */; };
-		BAD20E4696D1454DB909B16E /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */ = {isa = PBXBuildFile; fileRef = 6FFE0A4B8D2F458C8CDB920F /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */; };
-		C5573180B30448CFBCB3F55C /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */ = {isa = PBXBuildFile; fileRef = B26BB83267C140EA85D9AFF6 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */; };
-		C9CCDDA2BDE845B28895AB68 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */ = {isa = PBXBuildFile; fileRef = EFB8C99938D44CD18CDF507C /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */; };
-		CB349138ED554D5D822D5260 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */ = {isa = PBXBuildFile; fileRef = 31CB9470109A4776A89A7C92 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */; };
-		F6FC54C8D32A43869FDFE44D /* /usr/local/lib/QtNetwork.framework */ = {isa = PBXBuildFile; fileRef = F637A32896A849968686463E /* /usr/local/lib/QtNetwork.framework */; };
-		F8C49D08CE8A436AA8580388 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */ = {isa = PBXBuildFile; fileRef = AA9E2E4C6F6B4BF48E3F42E2 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */; };
+		041B015F65904F4B8E33F857 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */ = {isa = PBXBuildFile; fileRef = E18858806CFE48FDB6CC1719 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */; };
+		1060A4E0B742402085515B5A /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */ = {isa = PBXBuildFile; fileRef = BADB18555BD54D8C9A9E6432 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */; };
+		171B90DAC11945F9A78E3D44 /* /Users/jt/Desktop/TinyMeeting/http_service.hh */ = {isa = PBXBuildFile; fileRef = E7447ADD26CB4FF39546896C /* /Users/jt/Desktop/TinyMeeting/http_service.hh */; };
+		1E5F4346461849858745CD7E /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.hh */ = {isa = PBXBuildFile; fileRef = 73326BBD85AA4C78BD58D144 /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.hh */; };
+		2BE30129839E4ECCAD22A5B9 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */ = {isa = PBXBuildFile; fileRef = 54B9B054FFBC4424955C98EA /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */; };
+		30BC85B8C8794A36985B3FB1 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */ = {isa = PBXBuildFile; fileRef = 5DAA105149134C0291E1B3CE /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */; };
+		41E3EC1EE86E4063BA344660 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */ = {isa = PBXBuildFile; fileRef = 92A503B28BB14E219F7D5B71 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */; };
+		46AF133D568C431997A72CEE /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */ = {isa = PBXBuildFile; fileRef = F6CAB10B98764274AA603449 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */; };
+		4A826FBCA0AD44E7834D316F /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/ScreenCaptureKit.framework */ = {isa = PBXBuildFile; fileRef = 0DF703550EF443EB92D15077 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/ScreenCaptureKit.framework */; };
+		571AE76FC3884804BA33FE6C /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreMedia.framework */ = {isa = PBXBuildFile; fileRef = 2CF6292ACBAD4997969F95C0 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreMedia.framework */; };
+		5D316AB0F46D477390497E18 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 34E122C54FDB4D7B9003B855 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */; };
+		6164B2ED39164D4AA76F6DB1 /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */ = {isa = PBXBuildFile; fileRef = 19D292AF7D7641BDBE7AEE95 /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */; };
+		6DEB1D302C5D44F791C43B84 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */ = {isa = PBXBuildFile; fileRef = 94C6B19A0ED948A28ADC0107 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */; };
+		784926E48D8B47BC8D816FD1 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AVFoundation.framework */ = {isa = PBXBuildFile; fileRef = A5A245CD70904462A8512768 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AVFoundation.framework */; };
+		7D354E513AF84F8CA6DC9363 /* /Users/jt/Desktop/TinyMeeting/window_manager.cc */ = {isa = PBXBuildFile; fileRef = 98A14FE5093346F0B57DD201 /* /Users/jt/Desktop/TinyMeeting/window_manager.cc */; };
+		80FC3C8197504B4B9493DE1C /* /usr/local/lib/QtNetwork.framework */ = {isa = PBXBuildFile; fileRef = 0627A28AE6CE48F4B4906FC6 /* /usr/local/lib/QtNetwork.framework */; };
+		8BE841AFB5AF40DF911A41E5 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreVideo.framework */ = {isa = PBXBuildFile; fileRef = 2038A5D212D4494BB72593EE /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreVideo.framework */; };
+		904B387BA3014D07BC81D91B /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */ = {isa = PBXBuildFile; fileRef = 5F62E08AB4A040169AB837D5 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */; };
+		99E86774A6714DEC939D32D9 /* /usr/local/lib/QtWidgets.framework */ = {isa = PBXBuildFile; fileRef = 7B289FFBF99F496086E9A995 /* /usr/local/lib/QtWidgets.framework */; };
+		A0F74C8992564AA297D4D6C3 /* /Users/jt/Desktop/TinyMeeting/window_manager.hh */ = {isa = PBXBuildFile; fileRef = D423027B00FD4536844246C5 /* /Users/jt/Desktop/TinyMeeting/window_manager.hh */; };
+		A77C358A1A1F4517A75F3E3B /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */ = {isa = PBXBuildFile; fileRef = F96B3FBCA94A421F93E405EE /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */; };
+		BD3696F7D61B47B1896D59A5 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.mm */ = {isa = PBXBuildFile; fileRef = AA88EED214E64276814FA10B /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.mm */; };
+		BE986117D5984678B5CE2E00 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework */ = {isa = PBXBuildFile; fileRef = DDC4263D387E45A494475F65 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework */; };
+		C83446DC35C940238E0787F9 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */ = {isa = PBXBuildFile; fileRef = 20EE621CAD174AA682B15AC0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */; };
+		CAE7B5E697F94F0C83560B5B /* /usr/local/lib/QtGui.framework */ = {isa = PBXBuildFile; fileRef = A1B36486C5BF42A782538A9F /* /usr/local/lib/QtGui.framework */; };
+		D705F84BC07C4129BB49F33E /* /usr/local/lib/QtCore.framework */ = {isa = PBXBuildFile; fileRef = 0006937E01EA493D94026F7F /* /usr/local/lib/QtCore.framework */; };
+		D7DB38EDC39E459391B39FAC /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */ = {isa = PBXBuildFile; fileRef = DF4F2C4BB20F4F65BA376E46 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */; };
+		DF2348AB61BD4BD8B5F89B47 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.hh */ = {isa = PBXBuildFile; fileRef = D1928F84F8A64C1884E36952 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.hh */; };
+		E1CCA4BFDB894C5FA1FCC212 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */ = {isa = PBXBuildFile; fileRef = 1865B72D1A1E4C39ABD94BB3 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */; };
+		E49501952B3F4E17BBB43F1D /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.mm */ = {isa = PBXBuildFile; fileRef = 6A01EB82B7264F3EA926DF3F /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.mm */; };
+		E595DF0A68434B438286E48A /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */ = {isa = PBXBuildFile; fileRef = 6221C406576947E3B2CEBAC4 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */; };
+		E5F1D8F359A7403E8D7DDA48 /* /Users/jt/Desktop/TinyMeeting/main.cc */ = {isa = PBXBuildFile; fileRef = 952067A93FB94D53B72F51BF /* /Users/jt/Desktop/TinyMeeting/main.cc */; };
+		EC40AB6DD4F94A118E7D78CB /* /Users/jt/Desktop/TinyMeeting/http_service.cc */ = {isa = PBXBuildFile; fileRef = B9F8E398BCD1485D8F14BE6C /* /Users/jt/Desktop/TinyMeeting/http_service.cc */; };
+		F6CCCF75DA6543DA922B4744 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */ = {isa = PBXBuildFile; fileRef = EFD326B0C3FF4B379310A015 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		57C1036130384B6E8E86FA39 /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		98385FF714744850B3039099 /* RelWithDebInfo */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = RelWithDebInfo;
-		};
-		C45A37D239034FECAD23A629 /* Release */ = {
+		0D9F3FFDEF57477BBD4143CA /* Release */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Release;
 		};
-		F5D86BAF8A864E91A0358448 /* MinSizeRel */ = {
+		33FF3DA335DB47B8BE4C6402 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		D8BC4FE1E37C480E98EA7697 /* MinSizeRel */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = MinSizeRel;
 		};
+		E4C927B11C62473BA7D46472 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		0BD378B25DCB4238AC680DEE /* PBXContainerItemProxy */ = {
+		6C30EEFE0C424F5D9D6B239E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3F6783B97A01432184BFFC2E;
 			remoteInfo = ZERO_CHECK;
 		};
-		67027A7861FF441C9F3BD3B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C3527DC5918E48A7ABB105C1;
-			remoteInfo = TimsMeetingClient_autogen;
-		};
-		936EA6FDC40D40C4BDCB1DC3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F6783B97A01432184BFFC2E;
-			remoteInfo = ZERO_CHECK;
-		};
-		9F9534D7B19B4B45A99ABCB4 /* PBXContainerItemProxy */ = {
+		70A481EB07F24FBC8A9CE810 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 037B5A1F10E841CD827E1242;
 			remoteInfo = TimsMeetingClient;
 		};
-		A90A0FA95AE94E218CB9E8C9 /* PBXContainerItemProxy */ = {
+		D1E4CC149CDD4B8B9F881916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F6783B97A01432184BFFC2E;
+			remoteInfo = ZERO_CHECK;
+		};
+		D2BBCEAD8B5748B1AFBFAD9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3527DC5918E48A7ABB105C1;
+			remoteInfo = TimsMeetingClient_autogen;
+		};
+		EDF5C44618FE4686AABD1261 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA1933C1603847F5AE0C945E /* Project object */;
 			proxyType = 1;
@@ -141,36 +152,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		006C4E0DE231474790C38BF3 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		109938AA3D5D497AAD5650C5 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = http_protocol.cc; path = http_protocol.cc; sourceTree = SOURCE_ROOT; };
-		238485035A264C0396CF81CB /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mocs_compilation.cpp; path = build/TimsMeetingClient_autogen/mocs_compilation.cpp; sourceTree = SOURCE_ROOT; };
-		31CB9470109A4776A89A7C92 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = http_protocol.hh; path = http_protocol.hh; sourceTree = SOURCE_ROOT; };
-		3B357C99D8614A988DACA8E0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = pre_meeting_controller.cc; path = pre_meeting_controller.cc; sourceTree = SOURCE_ROOT; };
-		3D7C76950CBF41AEA457BEBB /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = in_meeting_controller.cc; path = in_meeting_controller.cc; sourceTree = SOURCE_ROOT; };
-		414A284FD01041D59BC9E4D3 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
-		44D637F5F280406DB44E9DC6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = in_meeting_controller.hh; path = in_meeting_controller.hh; sourceTree = SOURCE_ROOT; };
-		6BE2B6CA61184EABA70CB1B5 /* /Users/jt/Desktop/TinyMeeting/http_service.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = http_service.cc; path = http_service.cc; sourceTree = SOURCE_ROOT; };
-		6C1AE17FCED94FC1A6E593F1 /* /usr/local/lib/QtCore.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /usr/local/lib/QtCore.framework; sourceTree = "<absolute>"; };
-		6FFE0A4B8D2F458C8CDB920F /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
-		7243B8614F654227854A2C62 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = pre_meeting_view.cc; path = pre_meeting_view.cc; sourceTree = SOURCE_ROOT; };
-		74DA5787D5314C7091BF1E8E /* TimsMeetingClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = TimsMeetingClient; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D95A025AA6744A8958FC65F /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = in_meeting_view.hh; path = in_meeting_view.hh; sourceTree = SOURCE_ROOT; };
-		9C31C42F4050424F98A211A7 /* /usr/local/lib/QtGui.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /usr/local/lib/QtGui.framework; sourceTree = "<absolute>"; };
-		A91C046FCA2F466DB8547FE6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = in_meeting_view.cc; path = in_meeting_view.cc; sourceTree = SOURCE_ROOT; };
-		AA9E2E4C6F6B4BF48E3F42E2 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = meeting_model.cc; path = meeting_model.cc; sourceTree = SOURCE_ROOT; };
-		B0914B31A3DE4EECBA9B8698 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		B26BB83267C140EA85D9AFF6 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = pre_meeting_view.hh; path = pre_meeting_view.hh; sourceTree = SOURCE_ROOT; };
-		C1DE87AB7C4A4AA2949C876D /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = meeting_model.hh; path = meeting_model.hh; sourceTree = SOURCE_ROOT; };
-		CD93BB795CBF4AE79CF550AA /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		E0DD79E6D03E4FE1B4413B84 /* /Users/jt/Desktop/TinyMeeting/http_service.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = http_service.hh; path = http_service.hh; sourceTree = SOURCE_ROOT; };
-		EFB8C99938D44CD18CDF507C /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = pre_meeting_controller.hh; path = pre_meeting_controller.hh; sourceTree = SOURCE_ROOT; };
-		F637A32896A849968686463E /* /usr/local/lib/QtNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtNetwork.framework; path = /usr/local/lib/QtNetwork.framework; sourceTree = "<absolute>"; };
-		F8F30F214C9C4E69A917517E /* /usr/local/lib/QtWidgets.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = /usr/local/lib/QtWidgets.framework; sourceTree = "<absolute>"; };
-		F95B0810792C46149CA57CEC /* /Users/jt/Desktop/TinyMeeting/main.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cc; path = main.cc; sourceTree = SOURCE_ROOT; };
+		0006937E01EA493D94026F7F /* /usr/local/lib/QtCore.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /usr/local/lib/QtCore.framework; sourceTree = "<absolute>"; };
+		0627A28AE6CE48F4B4906FC6 /* /usr/local/lib/QtNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtNetwork.framework; path = /usr/local/lib/QtNetwork.framework; sourceTree = "<absolute>"; };
+		0DF703550EF443EB92D15077 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/ScreenCaptureKit.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = ScreenCaptureKit.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/ScreenCaptureKit.framework; sourceTree = "<absolute>"; };
+		1865B72D1A1E4C39ABD94BB3 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mocs_compilation.cpp; path = build/TimsMeetingClient_autogen/mocs_compilation.cpp; sourceTree = SOURCE_ROOT; };
+		19D292AF7D7641BDBE7AEE95 /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = meeting_model.hh; path = meeting_model.hh; sourceTree = SOURCE_ROOT; };
+		1C995D4C46154505B37AA3E0 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		2038A5D212D4494BB72593EE /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreVideo.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		20EE621CAD174AA682B15AC0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = pre_meeting_view.hh; path = pre_meeting_view.hh; sourceTree = SOURCE_ROOT; };
+		2CF6292ACBAD4997969F95C0 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreMedia.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = "<absolute>"; };
+		34E122C54FDB4D7B9003B855 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		54B9B054FFBC4424955C98EA /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = pre_meeting_controller.hh; path = pre_meeting_controller.hh; sourceTree = SOURCE_ROOT; };
+		5DAA105149134C0291E1B3CE /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = meeting_model.cc; path = meeting_model.cc; sourceTree = SOURCE_ROOT; };
+		5F62E08AB4A040169AB837D5 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = pre_meeting_controller.cc; path = pre_meeting_controller.cc; sourceTree = SOURCE_ROOT; };
+		6221C406576947E3B2CEBAC4 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		6A01EB82B7264F3EA926DF3F /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = camera_capture.mm; path = media_capture/camera_capture.mm; sourceTree = SOURCE_ROOT; };
+		73326BBD85AA4C78BD58D144 /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = camera_capture.hh; path = media_capture/camera_capture.hh; sourceTree = SOURCE_ROOT; };
+		7B289FFBF99F496086E9A995 /* /usr/local/lib/QtWidgets.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = /usr/local/lib/QtWidgets.framework; sourceTree = "<absolute>"; };
+		92A503B28BB14E219F7D5B71 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = pre_meeting_view.cc; path = pre_meeting_view.cc; sourceTree = SOURCE_ROOT; };
+		94C6B19A0ED948A28ADC0107 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = in_meeting_controller.hh; path = in_meeting_controller.hh; sourceTree = SOURCE_ROOT; };
+		952067A93FB94D53B72F51BF /* /Users/jt/Desktop/TinyMeeting/main.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cc; path = main.cc; sourceTree = SOURCE_ROOT; };
+		98A14FE5093346F0B57DD201 /* /Users/jt/Desktop/TinyMeeting/window_manager.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = window_manager.cc; path = window_manager.cc; sourceTree = SOURCE_ROOT; };
+		A1B36486C5BF42A782538A9F /* /usr/local/lib/QtGui.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /usr/local/lib/QtGui.framework; sourceTree = "<absolute>"; };
+		A53EB3C139094EC3B4FAB64A /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		A5A245CD70904462A8512768 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AVFoundation.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = "<absolute>"; };
+		AA88EED214E64276814FA10B /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = frame.mm; path = media_capture/frame.mm; sourceTree = SOURCE_ROOT; };
+		B9F8E398BCD1485D8F14BE6C /* /Users/jt/Desktop/TinyMeeting/http_service.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = http_service.cc; path = http_service.cc; sourceTree = SOURCE_ROOT; };
+		BADB18555BD54D8C9A9E6432 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = in_meeting_view.hh; path = in_meeting_view.hh; sourceTree = SOURCE_ROOT; };
+		D1928F84F8A64C1884E36952 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = frame.hh; path = media_capture/frame.hh; sourceTree = SOURCE_ROOT; };
+		D423027B00FD4536844246C5 /* /Users/jt/Desktop/TinyMeeting/window_manager.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = window_manager.hh; path = window_manager.hh; sourceTree = SOURCE_ROOT; };
+		DDC4263D387E45A494475F65 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		DF4F2C4BB20F4F65BA376E46 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = http_protocol.cc; path = http_protocol.cc; sourceTree = SOURCE_ROOT; };
+		E18858806CFE48FDB6CC1719 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = in_meeting_controller.cc; path = in_meeting_controller.cc; sourceTree = SOURCE_ROOT; };
+		E7447ADD26CB4FF39546896C /* /Users/jt/Desktop/TinyMeeting/http_service.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = http_service.hh; path = http_service.hh; sourceTree = SOURCE_ROOT; };
+		EFD326B0C3FF4B379310A015 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = http_protocol.hh; path = http_protocol.hh; sourceTree = SOURCE_ROOT; };
+		F6CAB10B98764274AA603449 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
+		F81AB715570F46C09F77C467 /* TimsMeetingClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = TimsMeetingClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		F96B3FBCA94A421F93E405EE /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = in_meeting_view.cc; path = in_meeting_view.cc; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E36D60B652344FBEBD36FECC /* Frameworks */ = {
+		8C640F411DEE4EE895DB1EC3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -180,108 +202,119 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C4CF4A836D14BDAA0FE0B3C /* Header Files */ = {
+		1456899105664613A42A3177 /* TimsMeetingClient_autogen */ = {
 			isa = PBXGroup;
 			children = (
-				31CB9470109A4776A89A7C92 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */,
-				E0DD79E6D03E4FE1B4413B84 /* /Users/jt/Desktop/TinyMeeting/http_service.hh */,
-				44D637F5F280406DB44E9DC6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */,
-				8D95A025AA6744A8958FC65F /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */,
-				C1DE87AB7C4A4AA2949C876D /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */,
-				EFB8C99938D44CD18CDF507C /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */,
-				B26BB83267C140EA85D9AFF6 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */,
-			);
-			name = "Header Files";
-			sourceTree = "<group>";
-		};
-		25B9C7E8C41442AB85D9FACE /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				DCCB56B61E774BBFBA69D5F0 /* CMake Rules */,
-				B0914B31A3DE4EECBA9B8698 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
-			);
-			name = ALL_BUILD;
-			sourceTree = "<group>";
-		};
-		40AB854BE47B4EE59855A97E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74DA5787D5314C7091BF1E8E /* TimsMeetingClient */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		41C4A9D9E74D41C88E2CC2A7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F637A32896A849968686463E /* /usr/local/lib/QtNetwork.framework */,
-				F8F30F214C9C4E69A917517E /* /usr/local/lib/QtWidgets.framework */,
-				9C31C42F4050424F98A211A7 /* /usr/local/lib/QtGui.framework */,
-				6C1AE17FCED94FC1A6E593F1 /* /usr/local/lib/QtCore.framework */,
-				6FFE0A4B8D2F458C8CDB920F /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */,
-				414A284FD01041D59BC9E4D3 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8D06BA6E430E4274BD33DB42 /* CMake Rules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "CMake Rules";
-			sourceTree = "<group>";
-		};
-		9D4237984AD0423EBB8C5E66 /* TimsMeetingClient_autogen */ = {
-			isa = PBXGroup;
-			children = (
-				8D06BA6E430E4274BD33DB42 /* CMake Rules */,
-				006C4E0DE231474790C38BF3 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
+				1F8E263C26E14C678A1D2C0C /* CMake Rules */,
+				1C995D4C46154505B37AA3E0 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
 			);
 			name = TimsMeetingClient_autogen;
 			sourceTree = "<group>";
 		};
-		AF27D5C6C1E241D2AA26266A = {
-			isa = PBXGroup;
-			children = (
-				DF71FAD3EC95408EB6F527E3 /* TimsMeetingClient */,
-				9D4237984AD0423EBB8C5E66 /* TimsMeetingClient_autogen */,
-				25B9C7E8C41442AB85D9FACE /* ALL_BUILD */,
-				40AB854BE47B4EE59855A97E /* Products */,
-				41C4A9D9E74D41C88E2CC2A7 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		BFCADB87DFF64574BD60861C /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				238485035A264C0396CF81CB /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */,
-				109938AA3D5D497AAD5650C5 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */,
-				6BE2B6CA61184EABA70CB1B5 /* /Users/jt/Desktop/TinyMeeting/http_service.cc */,
-				3D7C76950CBF41AEA457BEBB /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */,
-				A91C046FCA2F466DB8547FE6 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */,
-				F95B0810792C46149CA57CEC /* /Users/jt/Desktop/TinyMeeting/main.cc */,
-				AA9E2E4C6F6B4BF48E3F42E2 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */,
-				3B357C99D8614A988DACA8E0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */,
-				7243B8614F654227854A2C62 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		DCCB56B61E774BBFBA69D5F0 /* CMake Rules */ = {
+		1F8E263C26E14C678A1D2C0C /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		DF71FAD3EC95408EB6F527E3 /* TimsMeetingClient */ = {
+		2A336984DAAA4C38ADD5BAC3 /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-				BFCADB87DFF64574BD60861C /* Source Files */,
-				1C4CF4A836D14BDAA0FE0B3C /* Header Files */,
-				CD93BB795CBF4AE79CF550AA /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
+				C7433374EB734E53B867E2CF /* CMake Rules */,
+				A53EB3C139094EC3B4FAB64A /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		4B2F2027738641B1805E1EA6 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				1865B72D1A1E4C39ABD94BB3 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */,
+				DF4F2C4BB20F4F65BA376E46 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */,
+				B9F8E398BCD1485D8F14BE6C /* /Users/jt/Desktop/TinyMeeting/http_service.cc */,
+				E18858806CFE48FDB6CC1719 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */,
+				F96B3FBCA94A421F93E405EE /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */,
+				952067A93FB94D53B72F51BF /* /Users/jt/Desktop/TinyMeeting/main.cc */,
+				6A01EB82B7264F3EA926DF3F /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.mm */,
+				AA88EED214E64276814FA10B /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.mm */,
+				5DAA105149134C0291E1B3CE /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */,
+				5F62E08AB4A040169AB837D5 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */,
+				92A503B28BB14E219F7D5B71 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */,
+				98A14FE5093346F0B57DD201 /* /Users/jt/Desktop/TinyMeeting/window_manager.cc */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		4CE10BFDB7E94544AAA0DA3A /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFD326B0C3FF4B379310A015 /* /Users/jt/Desktop/TinyMeeting/http_protocol.hh */,
+				E7447ADD26CB4FF39546896C /* /Users/jt/Desktop/TinyMeeting/http_service.hh */,
+				94C6B19A0ED948A28ADC0107 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.hh */,
+				BADB18555BD54D8C9A9E6432 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.hh */,
+				73326BBD85AA4C78BD58D144 /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.hh */,
+				D1928F84F8A64C1884E36952 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.hh */,
+				19D292AF7D7641BDBE7AEE95 /* /Users/jt/Desktop/TinyMeeting/meeting_model.hh */,
+				54B9B054FFBC4424955C98EA /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh */,
+				20EE621CAD174AA682B15AC0 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.hh */,
+				D423027B00FD4536844246C5 /* /Users/jt/Desktop/TinyMeeting/window_manager.hh */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		5A1F179CE6704E86AF46E858 /* TimsMeetingClient */ = {
+			isa = PBXGroup;
+			children = (
+				4B2F2027738641B1805E1EA6 /* Source Files */,
+				4CE10BFDB7E94544AAA0DA3A /* Header Files */,
+				34E122C54FDB4D7B9003B855 /* /Users/jt/Desktop/TinyMeeting/CMakeLists.txt */,
 			);
 			name = TimsMeetingClient;
+			sourceTree = "<group>";
+		};
+		6681CF5F56CF4A69ACB9213D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F81AB715570F46C09F77C467 /* TimsMeetingClient */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7419DB64BA10449C895E905E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0627A28AE6CE48F4B4906FC6 /* /usr/local/lib/QtNetwork.framework */,
+				7B289FFBF99F496086E9A995 /* /usr/local/lib/QtWidgets.framework */,
+				DDC4263D387E45A494475F65 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/Cocoa.framework */,
+				0DF703550EF443EB92D15077 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/ScreenCaptureKit.framework */,
+				A5A245CD70904462A8512768 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AVFoundation.framework */,
+				2CF6292ACBAD4997969F95C0 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreMedia.framework */,
+				2038A5D212D4494BB72593EE /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/CoreVideo.framework */,
+				A1B36486C5BF42A782538A9F /* /usr/local/lib/QtGui.framework */,
+				0006937E01EA493D94026F7F /* /usr/local/lib/QtCore.framework */,
+				6221C406576947E3B2CEBAC4 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/OpenGL.framework */,
+				F6CAB10B98764274AA603449 /* /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/System/Library/Frameworks/AGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C7433374EB734E53B867E2CF /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		F165873AE4EC4288B15A5636 = {
+			isa = PBXGroup;
+			children = (
+				5A1F179CE6704E86AF46E858 /* TimsMeetingClient */,
+				1456899105664613A42A3177 /* TimsMeetingClient_autogen */,
+				2A336984DAAA4C38ADD5BAC3 /* ALL_BUILD */,
+				6681CF5F56CF4A69ACB9213D /* Products */,
+				7419DB64BA10449C895E905E /* Frameworks */,
+			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,20 +322,20 @@
 /* Begin PBXNativeTarget section */
 		037B5A1F10E841CD827E1242 /* TimsMeetingClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAF912E3353644BF910F5E1F /* Build configuration list for PBXNativeTarget "TimsMeetingClient" */;
+			buildConfigurationList = 5085274ADF5143D48DE14261 /* Build configuration list for PBXNativeTarget "TimsMeetingClient" */;
 			buildPhases = (
-				BDA0E11F5BD9467BB35DE74F /* Sources */,
-				E36D60B652344FBEBD36FECC /* Frameworks */,
+				D7A285BCA7AA4C199B1A46FC /* Sources */,
+				8C640F411DEE4EE895DB1EC3 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FE8F851F5FE74B0A828D2FBE /* PBXTargetDependency */,
-				8D754127AD9A4608901F2A1A /* PBXTargetDependency */,
+				F4CF13CBBE6243F5A6A4E95D /* PBXTargetDependency */,
+				CDC5BE992847457BBABBE9E5 /* PBXTargetDependency */,
 			);
 			name = TimsMeetingClient;
 			productName = TimsMeetingClient;
-			productReference = 74DA5787D5314C7091BF1E8E /* TimsMeetingClient */;
+			productReference = F81AB715570F46C09F77C467 /* TimsMeetingClient */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -314,18 +347,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1520;
 			};
-			buildConfigurationList = 13A1CEDBF0494C7E966D6DBD /* Build configuration list for PBXProject "TimsMeetingClient" */;
+			buildConfigurationList = CE309C37481645A2A328C893 /* Build configuration list for PBXProject "TimsMeetingClient" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				57C1036130384B6E8E86FA39 /* Debug */,
-				C45A37D239034FECAD23A629 /* Release */,
-				F5D86BAF8A864E91A0358448 /* MinSizeRel */,
-				98385FF714744850B3039099 /* RelWithDebInfo */,
+				E4C927B11C62473BA7D46472 /* Debug */,
+				0D9F3FFDEF57477BBD4143CA /* Release */,
+				D8BC4FE1E37C480E98EA7697 /* MinSizeRel */,
+				33FF3DA335DB47B8BE4C6402 /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = AF27D5C6C1E241D2AA26266A;
+			mainGroup = F165873AE4EC4288B15A5636;
 			projectDirPath = /Users/jt/Desktop/TinyMeeting;
 			projectRoot = "";
 			targets = (
@@ -485,101 +518,57 @@ exit 0";
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BDA0E11F5BD9467BB35DE74F /* Sources */ = {
+		D7A285BCA7AA4C199B1A46FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A31E358B094BD9A3264D87 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */,
-				55C82CE8B60C4EDAB09A0CE9 /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */,
-				0346D766A4C746D3905E7C6F /* /Users/jt/Desktop/TinyMeeting/http_service.cc */,
-				7C40F8B3CAB248D09693D1E2 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */,
-				43DC389391C649A993D07E16 /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */,
-				62FC77589DDE42DC9146CE23 /* /Users/jt/Desktop/TinyMeeting/main.cc */,
-				F8C49D08CE8A436AA8580388 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */,
-				62318FB4E45241F599599DD3 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */,
-				5B700843A0FD4D0C96C5FB05 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */,
+				E1CCA4BFDB894C5FA1FCC212 /* /Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/mocs_compilation.cpp */,
+				D7DB38EDC39E459391B39FAC /* /Users/jt/Desktop/TinyMeeting/http_protocol.cc */,
+				EC40AB6DD4F94A118E7D78CB /* /Users/jt/Desktop/TinyMeeting/http_service.cc */,
+				041B015F65904F4B8E33F857 /* /Users/jt/Desktop/TinyMeeting/in_meeting_controller.cc */,
+				A77C358A1A1F4517A75F3E3B /* /Users/jt/Desktop/TinyMeeting/in_meeting_view.cc */,
+				E5F1D8F359A7403E8D7DDA48 /* /Users/jt/Desktop/TinyMeeting/main.cc */,
+				E49501952B3F4E17BBB43F1D /* /Users/jt/Desktop/TinyMeeting/media_capture/camera_capture.mm */,
+				BD3696F7D61B47B1896D59A5 /* /Users/jt/Desktop/TinyMeeting/media_capture/frame.mm */,
+				30BC85B8C8794A36985B3FB1 /* /Users/jt/Desktop/TinyMeeting/meeting_model.cc */,
+				904B387BA3014D07BC81D91B /* /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.cc */,
+				41E3EC1EE86E4063BA344660 /* /Users/jt/Desktop/TinyMeeting/pre_meeting_view.cc */,
+				7D354E513AF84F8CA6DC9363 /* /Users/jt/Desktop/TinyMeeting/window_manager.cc */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A94A5965BAE4AA6ADACE358 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F6783B97A01432184BFFC2E /* ZERO_CHECK */;
-			targetProxy = A90A0FA95AE94E218CB9E8C9 /* PBXContainerItemProxy */;
-		};
-		7074E7F23F77476A82FA9376 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F6783B97A01432184BFFC2E /* ZERO_CHECK */;
-			targetProxy = 936EA6FDC40D40C4BDCB1DC3 /* PBXContainerItemProxy */;
-		};
-		8D754127AD9A4608901F2A1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C3527DC5918E48A7ABB105C1 /* TimsMeetingClient_autogen */;
-			targetProxy = 67027A7861FF441C9F3BD3B1 /* PBXContainerItemProxy */;
-		};
-		AC9C911A057B42E2B73A9FD5 /* PBXTargetDependency */ = {
+		4929AAC96B2A4C0189552DB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 037B5A1F10E841CD827E1242 /* TimsMeetingClient */;
-			targetProxy = 9F9534D7B19B4B45A99ABCB4 /* PBXContainerItemProxy */;
+			targetProxy = 70A481EB07F24FBC8A9CE810 /* PBXContainerItemProxy */;
 		};
-		FE8F851F5FE74B0A828D2FBE /* PBXTargetDependency */ = {
+		6DAEDC355EBD4D22BA9F6A8E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3F6783B97A01432184BFFC2E /* ZERO_CHECK */;
-			targetProxy = 0BD378B25DCB4238AC680DEE /* PBXContainerItemProxy */;
+			targetProxy = D1E4CC149CDD4B8B9F881916 /* PBXContainerItemProxy */;
+		};
+		CDC5BE992847457BBABBE9E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3527DC5918E48A7ABB105C1 /* TimsMeetingClient_autogen */;
+			targetProxy = D2BBCEAD8B5748B1AFBFAD9A /* PBXContainerItemProxy */;
+		};
+		D5CEA8A196104371BEF23005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F6783B97A01432184BFFC2E /* ZERO_CHECK */;
+			targetProxy = EDF5C44618FE4686AABD1261 /* PBXContainerItemProxy */;
+		};
+		F4CF13CBBE6243F5A6A4E95D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F6783B97A01432184BFFC2E /* ZERO_CHECK */;
+			targetProxy = 6C30EEFE0C424F5D9D6B239E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0E21AE0345CA48DC83E0F692 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NO_DEBUG,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_MinSizeRel,"$(inherited)");
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG -fPIC '-std=gnu++17' ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		29056D8135B4465CB2A071D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
-			};
-			name = Release;
-		};
-		3B8ABFE1F2E64A37A13FE6E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
-			};
-			name = Debug;
-		};
-		43011097BD66479199134AD2 /* MinSizeRel */ = {
+		02C6E706711E4D8CACF5E1D0 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -591,101 +580,7 @@ exit 0";
 				INSTALL_PATH = "";
 				OTHER_LDFLAGS = ("","$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		455082FC192A4685AB9A99B1 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NO_DEBUG,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_RelWithDebInfo,"$(inherited)");
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG -fPIC '-std=gnu++17' ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		4D45AB81BD7341ABB9088779 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		4E0A7E53185640AD97F2FA62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_Debug,"$(inherited)");
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				OTHER_CPLUSPLUSFLAGS = "   -fPIC '-std=gnu++17' ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
-				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Debug;
-		};
-		5B5A14B9FF02430D876BF944 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
 				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
 				USE_HEADERMAP = NO;
@@ -693,27 +588,7 @@ exit 0";
 			};
 			name = RelWithDebInfo;
 		};
-		62280513FC5E45D280F5518B /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TimsMeetingClient_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		661F931DC91F49CC8CDAC6E9 /* Release */ = {
+		0E889A6983A041168E9FBB1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -728,7 +603,7 @@ exit 0";
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
 				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG -fPIC '-std=gnu++17' ";
-				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker Cocoa","-Xlinker -framework -Xlinker ScreenCaptureKit","-Xlinker -framework -Xlinker AVFoundation",/usr/local/lib/libavformat.dylib,/usr/local/lib/libavcodec.dylib,/usr/local/lib/libavutil.dylib,/usr/local/lib/libswscale.dylib,"-Xlinker -framework -Xlinker CoreMedia","-Xlinker -framework -Xlinker CoreVideo","-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = TimsMeetingClient;
 				SECTORDER_FLAGS = "";
@@ -740,47 +615,34 @@ exit 0";
 			};
 			name = Release;
 		};
-		73AA7F35FDDE4AA7936D48A4 /* MinSizeRel */ = {
+		18534E8D41324A929CABE6FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_Debug,"$(inherited)");
 				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
+				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "   -fPIC '-std=gnu++17' ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker Cocoa","-Xlinker -framework -Xlinker ScreenCaptureKit","-Xlinker -framework -Xlinker AVFoundation",/usr/local/lib/libavformat.dylib,/usr/local/lib/libavcodec.dylib,/usr/local/lib/libavutil.dylib,/usr/local/lib/libswscale.dylib,"-Xlinker -framework -Xlinker CoreMedia","-Xlinker -framework -Xlinker CoreVideo","-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
+				PRODUCT_NAME = TimsMeetingClient;
 				SECTORDER_FLAGS = "";
 				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = MinSizeRel;
+			name = Debug;
 		};
-		8857D4A7CB864D9A9240E2AE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = Release;
-		};
-		8FCEADE9E5914BC98540D322 /* MinSizeRel */ = {
+		2657A28B6A404BF5AA17EAEB /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -788,29 +650,9 @@ exit 0";
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
 				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
 			};
-			name = MinSizeRel;
+			name = RelWithDebInfo;
 		};
-		958A91B5E4BB44A1B754595B /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		996FF187FF5D4D798B87A227 /* Debug */ = {
+		38F137861DA34E3FA4ABD690 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -830,7 +672,7 @@ exit 0";
 			};
 			name = Debug;
 		};
-		BD4F2EE744A54C5298FF7B4F /* Debug */ = {
+		3A2F28BD464C4101BDBAFA45 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -848,29 +690,36 @@ exit 0";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = Debug;
+			name = MinSizeRel;
 		};
-		C8359DDF5D744D2BB2590896 /* Release */ = {
+		3CFFC2EADE9D45A1A147C698 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NO_DEBUG,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_MinSizeRel,"$(inherited)");
 				INSTALL_PATH = "";
-				OTHER_LDFLAGS = ("","$(inherited)");
+				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG -fPIC '-std=gnu++17' ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker Cocoa","-Xlinker -framework -Xlinker ScreenCaptureKit","-Xlinker -framework -Xlinker AVFoundation",/usr/local/lib/libavformat.dylib,/usr/local/lib/libavcodec.dylib,/usr/local/lib/libavutil.dylib,/usr/local/lib/libswscale.dylib,"-Xlinker -framework -Xlinker CoreMedia","-Xlinker -framework -Xlinker CoreVideo","-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = TimsMeetingClient;
 				SECTORDER_FLAGS = "";
 				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = Release;
+			name = MinSizeRel;
 		};
-		CCBD349AC9364CCC964CF767 /* RelWithDebInfo */ = {
+		57484FEB7ADA41C796E3C333 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
@@ -878,9 +727,39 @@ exit 0";
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
 				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
 			};
-			name = RelWithDebInfo;
+			name = MinSizeRel;
 		};
-		DEFE08747C464C238082E9A2 /* RelWithDebInfo */ = {
+		5EC20860F136416DA2CE8FD9 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TimsMeetingClient_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		76713DACB3D749ADB7E12B29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
+			};
+			name = Release;
+		};
+		80F73361C09B4F18826A5A50 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -898,9 +777,29 @@ exit 0";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("$(inherited)");
 			};
-			name = RelWithDebInfo;
+			name = Release;
 		};
-		E6976E1870584EE8BE320D41 /* Debug */ = {
+		924C623F631E425F8D067125 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		93C4334B103B4A8FABE51238 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -920,60 +819,197 @@ exit 0";
 			};
 			name = Debug;
 		};
+		9A98B716B41C47479622F99C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk;
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build/build;
+			};
+			name = Debug;
+		};
+		B9CBF21A12E042869ED57E38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		BA2C31C72EEE44D4A7222073 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TimsMeetingClient_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		CC88D3ECB3C749EEAA3DF270 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_CORE_LIB,QT_NO_DEBUG,QT_NETWORK_LIB,QT_WIDGETS_LIB,QT_GUI_LIB,SPDLOG_SHARED_LIB,SPDLOG_COMPILED_LIB,SPDLOG_FMT_EXTERNAL,FMT_SHARED,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/jt/Desktop/TinyMeeting/build/TimsMeetingClient_autogen/include_RelWithDebInfo,"$(inherited)");
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG -fPIC '-std=gnu++17' ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","-F /usr/local/lib","-Xlinker -framework -Xlinker QtNetwork","-Xlinker -framework -Xlinker QtWidgets",/usr/local/lib/libspdlog.1.12.0.dylib,"-Xlinker -framework -Xlinker Cocoa","-Xlinker -framework -Xlinker ScreenCaptureKit","-Xlinker -framework -Xlinker AVFoundation",/usr/local/lib/libavformat.dylib,/usr/local/lib/libavcodec.dylib,/usr/local/lib/libavutil.dylib,/usr/local/lib/libswscale.dylib,"-Xlinker -framework -Xlinker CoreMedia","-Xlinker -framework -Xlinker CoreVideo","-Xlinker -framework -Xlinker QtGui","-Xlinker -framework -Xlinker QtCore","-framework IOKit","-framework DiskArbitration","-Xlinker -framework -Xlinker OpenGL","-Xlinker -framework -Xlinker AGL","-framework AppKit","-framework ImageIO","-framework Metal",/usr/local/lib/libfmt.10.1.0.dylib,"$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TimsMeetingClient;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (/usr/local/lib,"$(inherited)");
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/lib/QtCore.framework/Headers,"/usr/local/share/qt/mkspecs/macx-clang",/usr/local/include,/usr/local/lib/QtNetwork.framework/Headers,/usr/local/lib/QtWidgets.framework/Headers,/usr/local/lib/QtGui.framework/Headers,"$(inherited)");
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E60255B1F1634C9391062DDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		ED8A4DF349864002B0987129 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TimsMeetingClient_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		FE1A6E03FF43403E8F900CCC /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/jt/Desktop/TinyMeeting/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13A1CEDBF0494C7E966D6DBD /* Build configuration list for PBXProject "TimsMeetingClient" */ = {
+		36ED6DA8251248ED8F15FD0C /* Build configuration list for PBXAggregateTarget "TimsMeetingClient_autogen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3B8ABFE1F2E64A37A13FE6E1 /* Debug */,
-				29056D8135B4465CB2A071D7 /* Release */,
-				8FCEADE9E5914BC98540D322 /* MinSizeRel */,
-				CCBD349AC9364CCC964CF767 /* RelWithDebInfo */,
+				93C4334B103B4A8FABE51238 /* Debug */,
+				BA2C31C72EEE44D4A7222073 /* Release */,
+				5EC20860F136416DA2CE8FD9 /* MinSizeRel */,
+				ED8A4DF349864002B0987129 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		195EA332FEC84F289482C8F1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		5085274ADF5143D48DE14261 /* Build configuration list for PBXNativeTarget "TimsMeetingClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BD4F2EE744A54C5298FF7B4F /* Debug */,
-				C8359DDF5D744D2BB2590896 /* Release */,
-				958A91B5E4BB44A1B754595B /* MinSizeRel */,
-				5B5A14B9FF02430D876BF944 /* RelWithDebInfo */,
+				18534E8D41324A929CABE6FE /* Debug */,
+				0E889A6983A041168E9FBB1A /* Release */,
+				3CFFC2EADE9D45A1A147C698 /* MinSizeRel */,
+				CC88D3ECB3C749EEAA3DF270 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1BB310A4AC784859A4F85DA5 /* Build configuration list for PBXAggregateTarget "TimsMeetingClient_autogen" */ = {
+		CE309C37481645A2A328C893 /* Build configuration list for PBXProject "TimsMeetingClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E6976E1870584EE8BE320D41 /* Debug */,
-				4D45AB81BD7341ABB9088779 /* Release */,
-				43011097BD66479199134AD2 /* MinSizeRel */,
-				62280513FC5E45D280F5518B /* RelWithDebInfo */,
+				9A98B716B41C47479622F99C /* Debug */,
+				76713DACB3D749ADB7E12B29 /* Release */,
+				57484FEB7ADA41C796E3C333 /* MinSizeRel */,
+				2657A28B6A404BF5AA17EAEB /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4DB1ED94B22441108C02EAB4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		DC7A590EF57A4FBD8253CDBA /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				996FF187FF5D4D798B87A227 /* Debug */,
-				8857D4A7CB864D9A9240E2AE /* Release */,
-				73AA7F35FDDE4AA7936D48A4 /* MinSizeRel */,
-				DEFE08747C464C238082E9A2 /* RelWithDebInfo */,
+				38F137861DA34E3FA4ABD690 /* Debug */,
+				80F73361C09B4F18826A5A50 /* Release */,
+				924C623F631E425F8D067125 /* MinSizeRel */,
+				02C6E706711E4D8CACF5E1D0 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		FAF912E3353644BF910F5E1F /* Build configuration list for PBXNativeTarget "TimsMeetingClient" */ = {
+		E8EB402A86FD408284DA6971 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4E0A7E53185640AD97F2FA62 /* Debug */,
-				661F931DC91F49CC8CDAC6E9 /* Release */,
-				0E21AE0345CA48DC83E0F692 /* MinSizeRel */,
-				455082FC192A4685AB9A99B1 /* RelWithDebInfo */,
+				E60255B1F1634C9391062DDA /* Debug */,
+				B9CBF21A12E042869ED57E38 /* Release */,
+				3A2F28BD464C4101BDBAFA45 /* MinSizeRel */,
+				FE1A6E03FF43403E8F900CCC /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

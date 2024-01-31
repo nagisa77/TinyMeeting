@@ -9,6 +9,22 @@ find_package(Qt6 COMPONENTS Core Network Widgets REQUIRED)
 
 find_package(spdlog REQUIRED)
 
+find_library(COCOA_LIBRARY Cocoa)
+
+find_library(SCREEN_CAPTURE_KIT_LIBRARY ScreenCaptureKit)
+
+find_library(AVFOUNDATION_LIBRARY AVFoundation)
+
+find_path(FFMPEG_INCLUDE_DIR libavformat/avformat.h)
+find_library(AVFORMAT_LIBRARY avformat)
+find_library(AVCODEC_LIBRARY avcodec)
+find_library(AVUTIL_LIBRARY avutil)
+find_library(SWSCALE_LIBRARY swscale)
+find_library(SWRESAMPLE_LIBRARY swresample)
+
+find_library(COREMEDIA_LIBRARY CoreMedia)
+find_library(COREVIDEO_LIBRARY CoreVideo)
+
 add_executable(TimsMeetingClient
     main.cc
     pre_meeting_view.cc
@@ -25,10 +41,26 @@ add_executable(TimsMeetingClient
     in_meeting_controller.hh
     in_meeting_view.cc
     in_meeting_view.hh
+    window_manager.cc
+    window_manager.hh
+
+    media_capture/camera_capture.hh
+    media_capture/camera_capture.mm
+    media_capture/frame.hh
+    media_capture/frame.mm
 )
 target_link_libraries(TimsMeetingClient
     Qt6::Core
     Qt6::Network
     Qt6::Widgets
     spdlog::spdlog
+    ${COCOA_LIBRARY}
+    ${SCREEN_CAPTURE_KIT_LIBRARY}
+    ${AVFOUNDATION_LIBRARY}
+    ${AVFORMAT_LIBRARY}
+    ${AVCODEC_LIBRARY}
+    ${AVUTIL_LIBRARY}
+    ${SWSCALE_LIBRARY}
+    ${COREMEDIA_LIBRARY}
+    ${COREVIDEO_LIBRARY}
 )

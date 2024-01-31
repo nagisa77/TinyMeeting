@@ -12,7 +12,6 @@ class PreMeetingController : public MeetingModelDelegate {
 
   void HandleQuickMeeting();
   void JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) override;
-  
 
 private:
   PreMeetingView* view_ = nullptr;

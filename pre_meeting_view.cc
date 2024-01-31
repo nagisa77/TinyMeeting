@@ -2,9 +2,9 @@
 
 #include <QVBoxLayout>
 #include <spdlog/spdlog.h>
+#include "pre_meeting_controller.hh"
 
 PreMeetingView::~PreMeetingView() {
-  delete controller_; 
 }
 
 PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
@@ -17,8 +17,8 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
   meeting_id_edit_ = new QLineEdit(this);
   meeting_id_edit_->setFixedSize(200, 30);
 
-  controller_ = new PreMeetingController();
-
+  controller_ = std::make_shared<PreMeetingController>(this);
+  
   QVBoxLayout* layout = new QVBoxLayout(this);
   layout->setContentsMargins(30, 30, 30, 30);
   layout->setSpacing(0);

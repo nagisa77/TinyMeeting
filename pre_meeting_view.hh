@@ -4,8 +4,9 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QWidget>
+#include <memory>
 
-#include "pre_meeting_controller.hh"
+class PreMeetingController; 
 
 class PreMeetingView : public QWidget {
   Q_OBJECT
@@ -22,7 +23,7 @@ private:
   QPushButton* quick_meeting_button_;
   QPushButton* join_meeting_button_;
   QLineEdit* meeting_id_edit_;
-  PreMeetingController* controller_;
+  std::shared_ptr<PreMeetingController> controller_;
 };
 
 #endif  // PRE_MEETING_VIEW_HH

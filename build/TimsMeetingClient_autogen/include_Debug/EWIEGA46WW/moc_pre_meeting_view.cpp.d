@@ -683,8 +683,6 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/qos.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/time.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
-  /Users/jt/Desktop/TinyMeeting/pre_meeting_controller.hh \
-  /usr/local/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/QString \
   /usr/local/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /usr/local/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /usr/local/Cellar/qt/6.6.1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \
