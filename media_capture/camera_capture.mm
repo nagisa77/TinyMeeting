@@ -12,7 +12,9 @@
 - (void)captureOutput:(AVCaptureOutput*)output
     didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
            fromConnection:(AVCaptureConnection*)connection {
-  AVFRAME frame = CMSampleBufferRefToAVFRAME(sampleBuffer);
+  
+  std::shared_ptr<AVFRAME> frame = std::make_shared<AVFRAME>();
+  frame->frame_ = CMSampleBufferRefToAVFRAME(sampleBuffer);
   CameraCapture::getInstance()->InjectFrame(frame);
 }
 @end
@@ -45,7 +47,7 @@ void CameraCapture::UnRegister(CameraCaptureListener* listener) {
   listeners_.erase(listener);
 }
 
-void CameraCapture::InjectFrame(AVFRAME frame) {
+void CameraCapture::InjectFrame(std::shared_ptr<AVFRAME> frame) {
   for (auto listener : listeners_) {
     listener->OnCameraFrame(frame);
   }

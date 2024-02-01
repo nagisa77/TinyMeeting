@@ -5,11 +5,12 @@
 #include <set>
 
 #include "frame.hh"
+#include <memory>
 
 class CameraCaptureListener {
 public:
   virtual ~CameraCaptureListener() {}
-  virtual void OnCameraFrame(AVFRAME frame) = 0;
+  virtual void OnCameraFrame(std::shared_ptr<AVFRAME> frame) = 0;
 };
 
 class CameraCapture {
@@ -18,7 +19,7 @@ public:
   void Register(CameraCaptureListener* listener);
   void UnRegister(CameraCaptureListener* listener);
   static CameraCapture* getInstance();
-  void InjectFrame(AVFRAME frame);
+  void InjectFrame(std::shared_ptr<AVFRAME> frame);
 
 private:
   CameraCapture();

@@ -14,15 +14,15 @@ AVFRAME::~AVFRAME() {
   }
 }
 
-AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
+void* CMSampleBufferRefToAVFRAME(void* ref) {
   CMSampleBufferRef sampleBuffer = (CMSampleBufferRef)ref;
   if (!sampleBuffer) {
-    return AVFRAME();
+    return nullptr;
   }
 
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   if (!imageBuffer) {
-    return AVFRAME();
+    return nullptr;
   }
 
   CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
@@ -35,7 +35,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   AVFrame* frame = av_frame_alloc();
   if (!frame) {
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return AVFRAME();
+    return nullptr;
   }
 
   OSType pixelFormat = CVPixelBufferGetPixelFormatType(imageBuffer);
@@ -50,7 +50,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   default:
     av_frame_free(&frame);
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return AVFRAME();
+    return nullptr;
   }
 
   frame->format = avPixelFormat;
@@ -61,7 +61,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
                      avPixelFormat, 1) < 0) {
     av_frame_free(&frame);
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    return AVFRAME();
+    return nullptr;
   }
 
   if (avPixelFormat == AV_PIX_FMT_UYVY422 ||
@@ -73,9 +73,7 @@ AVFRAME CMSampleBufferRefToAVFRAME(void* ref) {
   }
 
   CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-  AVFRAME f;
-  f.frame_ = frame;
-  return f;
+  return frame;
 }
 
 void ReleaseAVFRAME(void* frame) {

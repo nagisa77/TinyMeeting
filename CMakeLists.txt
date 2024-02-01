@@ -8,7 +8,8 @@ cmake_policy(SET CMP0100 NEW)
 find_package(Qt6 COMPONENTS Core Network Widgets REQUIRED)
 
 find_package(spdlog REQUIRED)
-
+find_package(nlohmann_json REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system thread)
 find_library(COCOA_LIBRARY Cocoa)
 
 find_library(SCREEN_CAPTURE_KIT_LIBRARY ScreenCaptureKit)
@@ -43,17 +44,25 @@ add_executable(TimsMeetingClient
     in_meeting_view.hh
     window_manager.cc
     window_manager.hh
+    stream_pusher.hh
+    stream_pusher.cc
 
     media_capture/camera_capture.hh
     media_capture/camera_capture.mm
     media_capture/frame.hh
     media_capture/frame.mm
+
+    utils/blocking_queue.hh
+    utils/base64.hh
 )
 target_link_libraries(TimsMeetingClient
     Qt6::Core
     Qt6::Network
     Qt6::Widgets
     spdlog::spdlog
+    Boost::system
+    Boost::thread
+    nlohmann_json::nlohmann_json
     ${COCOA_LIBRARY}
     ${SCREEN_CAPTURE_KIT_LIBRARY}
     ${AVFOUNDATION_LIBRARY}

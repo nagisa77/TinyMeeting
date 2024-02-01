@@ -66,9 +66,9 @@ void MeetingModel::QuickMeeting() {
 
 void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
   spdlog::info("enable media: {}, enable: {}", (int)media_type, enable);
-  if (media_type == kMediaTypeVideo && self_user_status_.is_video_on == enable ||
-      media_type == kMediaTypeScreen && self_user_status_.is_screen_on == enable ||
-      media_type == kMediaTypeAudio && self_user_status_.is_audio_on == enable) {
+  if ((media_type == kMediaTypeVideo && self_user_status_.is_video_on == enable) ||
+      (media_type == kMediaTypeScreen && self_user_status_.is_screen_on == enable) ||
+      (media_type == kMediaTypeAudio && self_user_status_.is_audio_on == enable)) {
     return;
   }
   if (enable) {

@@ -9,7 +9,7 @@ struct AVFRAME {
   void* frame_ = nullptr;
 };
 
-AVFRAME CMSampleBufferRefToAVFRAME(void* ref);
+void* CMSampleBufferRefToAVFRAME(void* ref);
 
 void ReleaseAVFRAME(void* frame);
 
