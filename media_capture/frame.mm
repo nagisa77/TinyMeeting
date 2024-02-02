@@ -2,6 +2,7 @@
 extern "C" {
 #include <libavutil/frame.h>
 #include <libavutil/imgutils.h>
+#include <libswscale/swscale.h>
 }
 #import <CoreMedia/CoreMedia.h>
 
@@ -71,6 +72,36 @@ void* CMSampleBufferRefToAVFRAME(void* ref) {
       memcpy(frame->data[0] + i * frame->linesize[0], src + i * stride, stride);
     }
   }
+  
+  if (avPixelFormat == AV_PIX_FMT_UYVY422) {
+    static struct SwsContext* sws_ctx = sws_getContext(
+                                                frame->width, frame->height, AV_PIX_FMT_UYVY422,    // 源格式
+                                                frame->width, frame->height, AV_PIX_FMT_YUV420P,    // 目标格式
+                                                SWS_BILINEAR, NULL, NULL, NULL);
+    if (!sws_ctx) {
+      fprintf(stderr, "Could not initialize the conversion context\n");
+      exit(1);
+    }
+    
+    AVFrame* converted_frame = av_frame_alloc();
+    if (!converted_frame) {
+        fprintf(stderr, "Could not allocate video frame\n");
+        exit(1);
+    }
+    converted_frame->format = AV_PIX_FMT_YUV420P;
+    converted_frame->width  = frame->width;
+    converted_frame->height = frame->height;
+
+    // 为转换后的帧分配空间
+    av_image_alloc(converted_frame->data, converted_frame->linesize, frame->width, frame->height, AV_PIX_FMT_YUV420P, 16);
+
+    // 执行转换
+    sws_scale(sws_ctx, (const uint8_t* const*)frame->data, frame->linesize, 0, frame->height, converted_frame->data, converted_frame->linesize);
+    
+    CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
+    return converted_frame;
+  }
+
 
   CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
   return frame;

@@ -10,6 +10,10 @@ extern "C" {
 #include <libavcodec/avcodec.h>
 }
 
+AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
+  return (AVFrame*)frame->frame_;
+}
+
 enum MessageType {
   kTypeStreamInfo = 0,
   kTypePacket = 1,
@@ -115,7 +119,17 @@ static void send_packet(tcp::socket& socket, const AVPacket* pkt) {
 }
 
 StreamPusher::StreamPusher(const std::string& stream_id, const std::string& ip, int port)
-  : frame_queue_(100), stream_id_(stream_id), ip_(ip), port_(port) {}
+  : frame_queue_(100), stream_id_(stream_id), ip_(ip), port_(port) {
+    codec_thread_ = std::make_unique<boost::thread>(&StreamPusher::CodecFrameToServer, this);
+}
+
+StreamPusher::~StreamPusher() {
+  // 在析构函数中停止线程
+  if (codec_thread_ && codec_thread_->joinable()) {
+//      codec_thread_->interrupt();  如果您的 CodecFrameToServer 方法支持中断，请使用这个
+      codec_thread_->join();
+  }
+}
 
 void StreamPusher::OnCameraFrame(std::shared_ptr<AVFRAME> frame) {
   frame_queue_.push(frame);
@@ -139,105 +153,74 @@ int StreamPusher::CodecFrameToServer() {
       send_json(socket, start_push);
       
       spdlog::info("start Codec");
-
-      std::string file_path = "/Users/jt/Downloads/output.mp4";
       
-      const char* video_path = file_path.c_str();
-      AVFormatContext* pFormatCtx = NULL;
-      if (avformat_open_input(&pFormatCtx, video_path, NULL, NULL) != 0) {
-        printf("avformat_open_input error\n");
-        return 1;
-      }
-
-      if (avformat_find_stream_info(pFormatCtx, NULL) < 0) {
-        printf("avformat_find_stream_info error\n");
-        return 1;
-      }
-
-      int video_stream_index = -1;
-      for (int i = 0; i < pFormatCtx->nb_streams; ++i) {
-        if (pFormatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-          video_stream_index = i;
-        }
-      }
+      const AVCodec* codec = nullptr;
+      AVCodecContext* pCodecCtx = nullptr;
       
-      AVRational stream_time_base = pFormatCtx->streams[video_stream_index]->time_base;
-
-      if (video_stream_index == -1) {
-        spdlog::error("no video found");
-        return 1;
-      }
-
-      const AVCodec* codec = avcodec_find_decoder(
-          pFormatCtx->streams[video_stream_index]->codecpar->codec_id);
-      AVCodecContext* pCodecCtx = avcodec_alloc_context3(codec);
-      
-      avcodec_parameters_to_context(
-          pCodecCtx, pFormatCtx->streams[video_stream_index]->codecpar);
-
-      if (avcodec_open2(pCodecCtx, codec, NULL) < 0) {
-        fprintf(stderr, "Could not open codec\n");
-        return 1;
-      }
-      
-      JSON codec_info;
-      start_push["type"] = MessageType::kTypeCodecInfo;
-      start_push["codec_id"] = pCodecCtx->codec_id;
-      start_push["width"] = pCodecCtx->width;
-      start_push["height"] = pCodecCtx->height;
-      start_push["pix_fmt"] = pCodecCtx->pix_fmt;
-      start_push["extradata_size"] = pCodecCtx->extradata_size;
-      start_push["extradata"] = base64_encode(pCodecCtx->extradata, pCodecCtx->extradata_size);
-      send_json(socket, start_push);
-      
-      AVPacket pkt;
-      auto frame = createAVFramePtr();
-      uint64_t idx = 0;
-
-      struct timeval start, end;
-      gettimeofday(&start, NULL);
-
-      while (av_read_frame(pFormatCtx, &pkt) >= 0) {
-        if (pkt.stream_index == video_stream_index) {
-          if (avcodec_send_packet(pCodecCtx, &pkt) == 0) {
-            int ret = avcodec_receive_frame(pCodecCtx, frame.get());
-            if (ret == 0) {
-              double frame_time = av_q2d(stream_time_base) * frame->pts;
-              
-              static bool is_first_frame_ = true;
-              static int64_t first_frame_time_us_ = 0;
-              
-              int64_t frame_time_us = static_cast<int64_t>(frame_time * 1000000.0);
-
-              if (is_first_frame_) {
-                first_frame_time_us_ = av_gettime();
-                is_first_frame_ = false;
-              }
-
-              int64_t now_us = av_gettime();
-              frame_time_us += first_frame_time_us_;
-
-              if (now_us < frame_time_us) {
-                int64_t wait_time_us = frame_time_us - now_us;
-                std::this_thread::sleep_for(std::chrono::microseconds(wait_time_us));
-              }
-            }
+      while (auto AVF = frame_queue_.pop()) {
+        auto frame = AVFRAME2AVframe(AVF);
+        if (!codec || !pCodecCtx) {
+          // 30fps
+          AVRational stream_time_base;
+          stream_time_base.num = 1;
+          stream_time_base.den = 30; // 这里感觉有问题，需要弄成不是固定1s 30fps，不然卡卡的
+          
+          codec = avcodec_find_encoder(AVCodecID::AV_CODEC_ID_H264); // 以 H.264 为例
+          pCodecCtx = avcodec_alloc_context3(codec);
+          
+          // 配置 codecContext，例如设置比特率、分辨率等参数
+          pCodecCtx->width = frame->width;
+          pCodecCtx->height = frame->height;
+          pCodecCtx->pix_fmt = (AVPixelFormat)frame->format;
+          pCodecCtx->time_base = stream_time_base;
+          
+          if (avcodec_open2(pCodecCtx, codec, NULL) < 0) {
+            fprintf(stderr, "Could not open codec\n");
+            return 1;
           }
-          send_packet(socket, &pkt);
         }
-        av_packet_unref(&pkt);
-      }
+        
+        static bool send_codec_info = false;
+        
+        if (!send_codec_info) {
+          JSON codec_info;
+          start_push["type"] = MessageType::kTypeCodecInfo;
+          start_push["codec_id"] = pCodecCtx->codec_id;
+          start_push["width"] = pCodecCtx->width;
+          start_push["height"] = pCodecCtx->height;
+          start_push["pix_fmt"] = pCodecCtx->pix_fmt;
+          start_push["extradata_size"] = pCodecCtx->extradata_size;
+          start_push["extradata"] = base64_encode(pCodecCtx->extradata, pCodecCtx->extradata_size);
+          send_json(socket, start_push);
+          
+          send_codec_info = true;
+        }
+        
+        AVPacket* pkt = av_packet_alloc();
 
+        // 为每一个AVFrame编码生成AVPacket
+        if (avcodec_send_frame(pCodecCtx, frame) == 0) {
+          while (avcodec_receive_packet(pCodecCtx, pkt) == 0) {
+            // 此时pkt包含编码后的视频帧数据，可以发送
+            send_packet(socket, pkt);  // 假设这个函数已经实现，用于通过socket发送pkt
+
+            av_packet_unref(pkt);  // 必须调用，以避免内存泄漏
+          }
+        }
+        
+        // 释放 AVPacket
+        av_packet_free(&pkt);
+      }
+      
       // free
       avcodec_free_context(&pCodecCtx);
-      avformat_close_input(&pFormatCtx);
       
-      JSON stop_push;
-      stop_push["type"] = MessageType::kTypeStreamInfo;
-      stop_push["is_push"] = true;
-      stop_push["stream_id"] = "sub-video-tim";
-      stop_push["enable"] = false;
-      send_json(socket, stop_push);
+//        JSON stop_push;
+//        stop_push["type"] = MessageType::kTypeStreamInfo;
+//        stop_push["is_push"] = true;
+//        stop_push["stream_id"] = "sub-video-tim";
+//        stop_push["enable"] = false;
+//        send_json(socket, stop_push);
     } catch (std::exception& e) {
       spdlog::error("Exception: {}", e.what());
       return 1;

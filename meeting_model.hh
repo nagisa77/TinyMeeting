@@ -4,6 +4,8 @@
 #include "http_protocol.hh"
 #include <string>
 #include <set>
+#include <memory>
+#include "stream_pusher.hh"
 
 enum JoinMeetingResult {
   kJoinMeetingResultSuccess = 0,
@@ -53,6 +55,8 @@ private:
   std::set<MeetingModelDelegate*> delegates_;
   std::string current_meeting_id_;
   struct UserStatus self_user_status_;
+  
+  std::shared_ptr<StreamPusher> camera_pusher_;
 };
 
 #endif  // MEETING_MODEL_HH

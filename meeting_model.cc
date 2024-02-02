@@ -84,6 +84,8 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
           spdlog::info("request up stream: {}, msg: {}", result, msg.toStdString());
           
           if (media_type == kMediaTypeVideo) {
+            camera_pusher_ = std::make_shared<StreamPusher>("tim-camera", "127.0.0.1", 10086);
+            CameraCapture::getInstance()->Register(camera_pusher_.get());
             CameraCapture::getInstance()->Start(true);
           }
         }
