@@ -6,6 +6,7 @@
 #include <QNetworkReply>
 #include <string>
 #include <QObject>
+#include "header.hh"
 
 class BaseProtocol : public QObject {
   Q_OBJECT
@@ -68,10 +69,14 @@ class UserStatusProtocol : public BaseProtocol {
   Q_OBJECT
 
  public:
-  explicit UserStatusProtocol(QObject* parent = nullptr);
+  explicit UserStatusProtocol(const std::string& meeting_id, const UserStatus& user_status, QObject* parent = nullptr);
   ~UserStatusProtocol() override;
 
   void MakeRequest(const ResponseHandler& handler) override;
+  
+private:
+  UserStatus user_status_;
+  std::string meeting_id_;
 };
 
 class RequestUserStatusProtocol : public BaseProtocol {

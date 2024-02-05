@@ -17,3 +17,6 @@ void InMeetingController::HandleVideoClick() {
   MeetingModel::getInstance().EnableMedia(kMediaTypeVideo, true);
 }
 
+void InMeetingController::PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) {
+  
+}

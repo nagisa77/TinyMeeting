@@ -121,6 +121,16 @@ static void send_packet(tcp::socket& socket, const AVPacket* pkt) {
 StreamPusher::StreamPusher(const std::string& stream_id, const std::string& ip, int port)
   : frame_queue_(100), stream_id_(stream_id), ip_(ip), port_(port) {
     codec_thread_ = std::make_unique<boost::thread>(&StreamPusher::CodecFrameToServer, this);
+    
+    connect(this, &StreamPusher::ShouldStopPushing, this, &StreamPusher::OnShouldStopPushing);
+}
+
+void StreamPusher::RegisterListener(StreamPusherListener* listener) {
+  listener_ = listener;
+}
+
+void StreamPusher::UnRegisterListener(StreamPusherListener* listener) {
+  listener_ = nullptr;
 }
 
 StreamPusher::~StreamPusher() {
@@ -133,6 +143,12 @@ StreamPusher::~StreamPusher() {
 
 void StreamPusher::OnCameraFrame(std::shared_ptr<AVFRAME> frame) {
   frame_queue_.push(frame);
+}
+
+void StreamPusher::OnShouldStopPushing() {
+  if (listener_) {
+    listener_->OnStreamServerError(this);
+  }
 }
 
 int StreamPusher::CodecFrameToServer() {
@@ -223,6 +239,9 @@ int StreamPusher::CodecFrameToServer() {
 //        send_json(socket, stop_push);
     } catch (std::exception& e) {
       spdlog::error("Exception: {}", e.what());
+      
+      emit ShouldStopPushing();
+      
       return 1;
     }
 

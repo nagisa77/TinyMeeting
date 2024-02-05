@@ -73,6 +73,22 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
   }
 }
 
+void MeetingModel::OnStreamServerError(StreamPusher* pusher) {
+  if (pusher == camera_pusher_.get()) {
+    camera_pusher_->UnRegisterListener(this);
+    CameraCapture::getInstance()->UnRegister(camera_pusher_.get());
+    CameraCapture::getInstance()->Start(false);
+    camera_pusher_.reset();
+    
+    self_user_status_.is_video_on = false;
+    self_user_status_.video_stream_id.clear();
+    
+    SyncUserStatus();
+    
+    NotifyPushMediaCompelete(kMediaTypeVideo, kPushMediaResultFailed, "media sever error");
+  }
+}
+
 void MeetingModel::QuickMeeting() {
   QuickMeetingProtocol quick_meeting;
   quick_meeting.MakeRequest([=](QNetworkReply* reply) {
@@ -85,7 +101,9 @@ void MeetingModel::QuickMeeting() {
         
         spdlog::info("quick meeting id: {}", meeting_id.toStdString());
         
-        JoinMeetingProtocol join_meeting("tim", meeting_id.toStdString());
+        std::string user_id = "tim";
+        JoinMeetingProtocol join_meeting(user_id, meeting_id.toStdString());
+        
         join_meeting.MakeRequest([=](QNetworkReply* reply) {
           if (reply->error() == QNetworkReply::NoError) {
             auto response = reply->readAll();
@@ -97,6 +115,8 @@ void MeetingModel::QuickMeeting() {
               
               spdlog::info("join meeting result: {}, msg: {}", result, msg.toStdString());
               current_meeting_id_ = meeting_id.toStdString();
+              self_user_status_.user_id = user_id;
+              
               NotifyJoinComplete((JoinMeetingResult)result, msg.toStdString());
               
               if (result == kJoinMeetingResultSuccess) {
@@ -137,8 +157,16 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
           
           if (media_type == kMediaTypeVideo) {
             camera_pusher_ = std::make_shared<StreamPusher>("tim-camera", "127.0.0.1", 10086);
+            camera_pusher_->RegisterListener(this);
             CameraCapture::getInstance()->Register(camera_pusher_.get());
             CameraCapture::getInstance()->Start(true);
+            
+            self_user_status_.is_video_on = true;
+            self_user_status_.video_stream_id = "tim-camera"; 
+            
+            SyncUserStatus();
+            
+            NotifyPushMediaCompelete(kMediaTypeVideo, kPushMediaResultSuccess, "push camera success");
           }
         }
       } else {
@@ -147,6 +175,25 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
       }
     });
   }
+}
+
+void MeetingModel::SyncUserStatus() {
+  UserStatusProtocol sync_user_status(current_meeting_id_, self_user_status_);
+  sync_user_status.MakeRequest([=](QNetworkReply* reply) {
+    if (reply->error() == QNetworkReply::NoError) {
+      auto response = reply->readAll();
+      QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+      if (!jsonDoc.isNull() && jsonDoc.isObject()) {
+        auto jsonObject = jsonDoc.object();
+        int result = jsonObject["result"].toBool();
+        QString msg = jsonObject["msg"].toString();
+        spdlog::info("sync user status: {}, msg: {}", result, msg.toStdString());
+      }
+    } else {
+      spdlog::info("Error in network reply: {}",
+                   reply->errorString().toStdString());
+    }
+  });
 }
 
 void MeetingModel::JoinMeeting(const QString& meetingId) {
@@ -164,3 +211,11 @@ void MeetingModel::NotifyJoinComplete(JoinMeetingResult result, const std::strin
     delegate->JoinMeetingComplete(result, msg);
   }
 }
+
+void MeetingModel::NotifyPushMediaCompelete(MediaType media_type, PushMediaResult result, const std::string& msg) {
+  auto delegates(delegates_);
+  for (auto delegate : delegates) {
+    delegate->PushMediaComplete(media_type, result, msg);
+  }
+}
+

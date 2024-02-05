@@ -5,14 +5,31 @@
 #include "utils/blocking_queue.hh"
 #include <string>
 #include <boost/thread.hpp>
+#include <QObject>
 
-
-class StreamPusher : public CameraCaptureListener {
+class StreamPusher;
+class StreamPusherListener {
 public:
-  StreamPusher(const std::string& stream_id, const std::string& ip, int port); 
+  virtual void OnStreamServerError(StreamPusher* pusher) = 0;
+};
+
+class StreamPusher :
+public QObject,
+public CameraCaptureListener {
+  Q_OBJECT
+public:
+  StreamPusher(const std::string& stream_id, const std::string& ip, int port);
   ~StreamPusher(); 
   void OnCameraFrame(std::shared_ptr<AVFRAME> frame) override;
   int CodecFrameToServer(); 
+  void RegisterListener(StreamPusherListener* listener);
+  void UnRegisterListener(StreamPusherListener* listener);
+  
+signals:
+  void ShouldStopPushing();
+  
+public slots:
+  void OnShouldStopPushing();
   
 private:
   BlockingQueue<std::shared_ptr<AVFRAME>> frame_queue_; 
@@ -20,6 +37,7 @@ private:
   std::string ip_;
   int port_;
   std::unique_ptr<boost::thread> codec_thread_;
+  StreamPusherListener* listener_ = nullptr;
 };
 
 #endif // STREAM_PUSHER_HH 

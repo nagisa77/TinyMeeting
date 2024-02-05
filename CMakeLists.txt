@@ -46,6 +46,7 @@ add_executable(TinyMeeting
     window_manager.hh
     stream_pusher.hh
     stream_pusher.cc
+    header.hh
 
     media_capture/camera_capture.hh
     media_capture/camera_capture.mm

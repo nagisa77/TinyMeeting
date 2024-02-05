@@ -15,7 +15,9 @@
   
   std::shared_ptr<AVFRAME> frame = std::make_shared<AVFRAME>();
   frame->frame_ = CMSampleBufferRefToAVFRAME(sampleBuffer);
-  CameraCapture::getInstance()->InjectFrame(frame);
+  dispatch_async(dispatch_get_main_queue(), ^{
+    CameraCapture::getInstance()->InjectFrame(frame);
+  });
 }
 @end
 

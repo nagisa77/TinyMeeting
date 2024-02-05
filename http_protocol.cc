@@ -79,14 +79,33 @@ void RequestUpStreamProtocol::MakeRequest(const ResponseHandler& handler) {
   });
 }
 
-UserStatusProtocol::UserStatusProtocol(QObject* parent)
-    : BaseProtocol(parent) {}
+UserStatusProtocol::UserStatusProtocol(const std::string& meeting_id, const UserStatus& user_status, QObject* parent)
+    : BaseProtocol(parent), meeting_id_(meeting_id), user_status_(user_status) {}
 
 UserStatusProtocol::~UserStatusProtocol() {}
 
 void UserStatusProtocol::MakeRequest(const ResponseHandler& handler) {
-  // 实现发送用户状态请求的逻辑
-  // return networkManager->post(...);
+  auto& service = HttpService::getInstance();
+
+  QJsonObject json;
+  json["meeting_id"] = QString::fromStdString(meeting_id_);
+  json["user_id"] = QString::fromStdString(user_status_.user_id);
+  json["is_audio_on"] = user_status_.is_audio_on;
+  json["is_video_on"] = user_status_.is_video_on;
+  json["is_screen_on"] = user_status_.is_screen_on;
+  json["audio_stream_id"] = QString::fromStdString(user_status_.audio_stream_id);
+  json["video_stream_id"] = QString::fromStdString(user_status_.video_stream_id);
+  json["screen_stream_id"] = QString::fromStdString(user_status_.screen_stream_id);
+
+  QJsonDocument doc(json);
+  QByteArray data = doc.toJson();
+
+  auto* reply = service.post(QUrl("http://localhost:3000/user_status"), data);
+
+  connect(reply, &QNetworkReply::finished, [reply, handler]() {
+    handler(reply);
+    reply->deleteLater();
+  });
 }
 
 
