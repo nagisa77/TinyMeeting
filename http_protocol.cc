@@ -88,3 +88,30 @@ void UserStatusProtocol::MakeRequest(const ResponseHandler& handler) {
   // 实现发送用户状态请求的逻辑
   // return networkManager->post(...);
 }
+
+
+RequestUserStatusProtocol::RequestUserStatusProtocol(const std::string& meeting_id, QObject* parent)
+  : BaseProtocol(parent), meeting_id_(meeting_id) {}
+
+RequestUserStatusProtocol::~RequestUserStatusProtocol() {
+}
+
+void RequestUserStatusProtocol::MakeRequest(const ResponseHandler& handler) {
+  auto& service = HttpService::getInstance();
+
+  // 创建一个包含 user_id 和 meeting_id 的 JSON 对象
+  QJsonObject json;
+  json["meeting_id"] = QString::fromStdString(meeting_id_);
+
+  // 将 JSON 对象转换为 QByteArray
+  QJsonDocument doc(json);
+  QByteArray data = doc.toJson();
+
+  // 发送 POST 请求
+  auto* reply = service.post(QUrl("http://localhost:3000/request_user_status"), data);
+
+  connect(reply, &QNetworkReply::finished, [reply, handler]() {
+    handler(reply);
+    reply->deleteLater();
+  });
+}

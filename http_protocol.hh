@@ -74,4 +74,18 @@ class UserStatusProtocol : public BaseProtocol {
   void MakeRequest(const ResponseHandler& handler) override;
 };
 
+class RequestUserStatusProtocol : public BaseProtocol {
+  Q_OBJECT
+
+ public:
+  explicit RequestUserStatusProtocol(const std::string& meeting_id, QObject* parent = nullptr);
+  ~RequestUserStatusProtocol() override;
+
+  void MakeRequest(const ResponseHandler& handler) override;
+  
+private:
+  std::string meeting_id_;
+};
+
+
 #endif  // HTTP_PROTOCOL_HH

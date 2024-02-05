@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(TimsMeetingClient)
+project(TinyMeeting)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -26,7 +26,7 @@ find_library(SWRESAMPLE_LIBRARY swresample)
 find_library(COREMEDIA_LIBRARY CoreMedia)
 find_library(COREVIDEO_LIBRARY CoreVideo)
 
-add_executable(TimsMeetingClient
+add_executable(TinyMeeting
     main.cc
     pre_meeting_view.cc
     pre_meeting_view.hh
@@ -55,7 +55,7 @@ add_executable(TimsMeetingClient
     utils/blocking_queue.hh
     utils/base64.hh
 )
-target_link_libraries(TimsMeetingClient
+target_link_libraries(TinyMeeting
     Qt6::Core
     Qt6::Network
     Qt6::Widgets
