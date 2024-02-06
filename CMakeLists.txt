@@ -4,6 +4,12 @@ project(TinyMeeting)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+set(MACOSX_BUNDLE_ICON_FILE icon.icns)
+set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
+set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+    MACOSX_PACKAGE_LOCATION "Resources")
+
 cmake_policy(SET CMP0100 NEW)
 
 find_package(Qt6 COMPONENTS Core Network Widgets REQUIRED)
@@ -28,6 +34,8 @@ find_library(COREMEDIA_LIBRARY CoreMedia)
 find_library(COREVIDEO_LIBRARY CoreVideo)
 
 add_executable(TinyMeeting
+    MACOSX_BUNDLE ${APP_ICON_MACOSX}
+
     main.cc
     pre_meeting_view.cc
     pre_meeting_view.hh
@@ -57,6 +65,9 @@ add_executable(TinyMeeting
     utils/blocking_queue.hh
     utils/base64.hh
 )
+set_target_properties(TinyMeeting PROPERTIES
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+
 target_link_libraries(TinyMeeting
     Qt6::Core
     Qt6::Network
