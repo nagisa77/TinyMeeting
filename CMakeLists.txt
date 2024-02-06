@@ -3,6 +3,7 @@ project(TinyMeeting)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_policy(SET CMP0100 NEW)
 
 find_package(Qt6 COMPONENTS Core Network Widgets REQUIRED)

@@ -1,5 +1,6 @@
 #ifndef HEADER_HH
 #define HEADER_HH
+#include <string> 
 
 enum RequestUserStatusResult {
   kRequestUserStatusResultSuccess = 0,
