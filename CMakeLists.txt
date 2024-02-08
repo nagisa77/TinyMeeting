@@ -55,6 +55,9 @@ add_executable(TinyMeeting
     window_manager.hh
     stream_pusher.hh
     stream_pusher.cc
+    stream_puller.hh
+    stream_puller.cc
+
     header.hh
 
     media_capture/camera_capture.hh
@@ -64,6 +67,7 @@ add_executable(TinyMeeting
 
     utils/blocking_queue.hh
     utils/base64.hh
+    utils/socket_helper.hh
 )
 set_target_properties(TinyMeeting PROPERTIES
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
