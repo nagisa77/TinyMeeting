@@ -10,7 +10,7 @@ class PreMeetingController : public MeetingModelDelegate {
   PreMeetingController(PreMeetingView* view);
   ~PreMeetingController();
 
-  void HandleQuickMeeting();
+  void HandleQuickMeeting(const std::string& user_id);
   void JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) override;
 
 private:

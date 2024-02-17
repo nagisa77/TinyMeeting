@@ -28,7 +28,7 @@ public:
   
   void Register(MeetingModelDelegate* delegate);
   void UnRegister(MeetingModelDelegate* delegate);
-  void QuickMeeting();
+  void QuickMeeting(const std::string& userId);
   void EnableMedia(MediaType media_type, bool enable);
   void JoinMeeting(const QString& meetingId);
   void HandleUserStatus(const QString& meetingId, bool mic, bool video,

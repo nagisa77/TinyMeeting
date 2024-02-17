@@ -33,6 +33,10 @@ find_library(SWRESAMPLE_LIBRARY swresample)
 find_library(COREMEDIA_LIBRARY CoreMedia)
 find_library(COREVIDEO_LIBRARY CoreVideo)
 
+set(CAMERA_USAGE_DESCRIPTION "此应用需要使用摄像头来进行会议视频通话")
+
+qt_add_resources(RESOURCES resources.qrc) # 添加资源文件
+
 add_executable(TinyMeeting
     MACOSX_BUNDLE ${APP_ICON_MACOSX}
 
@@ -68,9 +72,13 @@ add_executable(TinyMeeting
     utils/blocking_queue.hh
     utils/base64.hh
     utils/socket_helper.hh
+
+    ${RESOURCES}
 )
 set_target_properties(TinyMeeting PROPERTIES
-    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist
+    XCODE_ATTRIBUTE_NS_CAMERA_USAGE_DESCRIPTION "${CAMERA_USAGE_DESCRIPTION}"
+    )
 
 target_link_libraries(TinyMeeting
     Qt6::Core

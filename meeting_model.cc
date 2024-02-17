@@ -89,7 +89,7 @@ void MeetingModel::OnStreamServerError(StreamPusher* pusher) {
   }
 }
 
-void MeetingModel::QuickMeeting() {
+void MeetingModel::QuickMeeting(const std::string& userId) {
   QuickMeetingProtocol quick_meeting;
   quick_meeting.MakeRequest([=](QNetworkReply* reply) {
     if (reply->error() == QNetworkReply::NoError) {
@@ -101,8 +101,7 @@ void MeetingModel::QuickMeeting() {
         
         spdlog::info("quick meeting id: {}", meeting_id.toStdString());
         
-        std::string user_id = "tim";
-        JoinMeetingProtocol join_meeting(user_id, meeting_id.toStdString());
+        JoinMeetingProtocol join_meeting(userId, meeting_id.toStdString());
         
         join_meeting.MakeRequest([=](QNetworkReply* reply) {
           if (reply->error() == QNetworkReply::NoError) {
@@ -115,7 +114,7 @@ void MeetingModel::QuickMeeting() {
               
               spdlog::info("join meeting result: {}, msg: {}", result, msg.toStdString());
               current_meeting_id_ = meeting_id.toStdString();
-              self_user_status_.user_id = user_id;
+              self_user_status_.user_id = userId;
               
               NotifyJoinComplete((JoinMeetingResult)result, msg.toStdString());
               
@@ -144,7 +143,7 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
     return;
   }
   if (enable) {
-    RequestUpStreamProtocol request_up_stream("tim", current_meeting_id_, media_type);
+    RequestUpStreamProtocol request_up_stream(self_user_status_.user_id, current_meeting_id_, media_type);
     request_up_stream.MakeRequest([=](QNetworkReply* reply) {
       if (reply->error() == QNetworkReply::NoError) {
         auto response = reply->readAll();
@@ -156,13 +155,14 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
           spdlog::info("request up stream: {}, msg: {}", result, msg.toStdString());
           
           if (media_type == kMediaTypeVideo) {
-            camera_pusher_ = std::make_shared<StreamPusher>("tim-camera", "127.0.0.1", 10086);
+            std::string camere_stream_id = self_user_status_.user_id + "camera";
+            camera_pusher_ = std::make_shared<StreamPusher>(camere_stream_id, "127.0.0.1", 10086);
             camera_pusher_->RegisterListener(this);
             CameraCapture::getInstance()->Register(camera_pusher_.get());
             CameraCapture::getInstance()->Start(true);
             
             self_user_status_.is_video_on = true;
-            self_user_status_.video_stream_id = "tim-camera"; 
+            self_user_status_.video_stream_id = camere_stream_id;
             
             SyncUserStatus();
             

@@ -12,8 +12,8 @@ PreMeetingController::~PreMeetingController() {
   MeetingModel::getInstance().UnRegister(this);
 }
 
-void PreMeetingController::HandleQuickMeeting() {
-  MeetingModel::getInstance().QuickMeeting();
+void PreMeetingController::HandleQuickMeeting(const std::string& user_id) {
+  MeetingModel::getInstance().QuickMeeting(user_id);
 }
 
 void PreMeetingController::JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) {

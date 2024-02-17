@@ -19,6 +19,8 @@
     <key>NSMainNibFile</key>
     <string>MainMenu</string>
     <!-- 其他配置 -->
+    <key>NSCameraUsageDescription</key>
+    <string>此应用需要使用您的摄像头来进行视频会议</string>
 </dict>
 </plist>
 

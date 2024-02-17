@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <memory>
+#include <QLabel>
 
 class PreMeetingController; 
 
@@ -23,6 +24,8 @@ private:
   QPushButton* quick_meeting_button_;
   QPushButton* join_meeting_button_;
   QLineEdit* meeting_id_edit_;
+  QLineEdit* user_name_edit_;
+  QLabel* require_user_id_label_;
   std::shared_ptr<PreMeetingController> controller_;
 };
 

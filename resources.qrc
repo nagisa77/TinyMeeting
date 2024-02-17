@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="user_icon">resources/username.png</file>
+        <file alias="meeting_icon">resources/meeting.png</file>
+    </qresource>
+</RCC>
