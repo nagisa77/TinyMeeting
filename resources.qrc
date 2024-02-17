@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file alias="user_icon">resources/username.png</file>
         <file alias="meeting_icon">resources/meeting.png</file>
+        <file alias="audio_icon">resources/audio.png</file>
+        <file alias="screen_share_icon">resources/screen-share.png</file>
+        <file alias="video_icon">resources/video.png</file>
     </qresource>
 </RCC>

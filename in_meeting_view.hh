@@ -6,8 +6,30 @@
 #include <QPushButton>
 #include <QWidget>
 #include <memory>
+#include <QGridLayout>
 
 class InMeetingController;
+
+class UserInfoView : public QWidget {
+  Q_OBJECT
+
+public:
+  explicit UserInfoView(QWidget* parent = nullptr);
+  ~UserInfoView() override;
+};
+
+class UserInfoViewContainer : public QWidget {
+  Q_OBJECT
+
+private:
+  QGridLayout *layout;
+
+public:
+  explicit UserInfoViewContainer(QWidget* parent = nullptr);
+  void addUserInfoView(UserInfoView* view);
+protected:
+  void resizeEvent(QResizeEvent* event) override;
+};
 
 class InMeetingView : public QWidget {
   Q_OBJECT
@@ -27,7 +49,7 @@ private:
 
 private:
   std::shared_ptr<InMeetingController> controller_;
-  QWidget* renderViewContainer_ = nullptr;
+  UserInfoViewContainer* user_info_view_container_ = nullptr;
   QWidget* streamControlContainer_ = nullptr;
   QWidget* memberListContainer_ = nullptr;
   QPushButton* audioButton_ = nullptr;

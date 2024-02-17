@@ -5,6 +5,7 @@
 #include <QFont>
 
 #include "pre_meeting_controller.hh"
+#include "ui_utils/toast.hh"
 
 PreMeetingView::~PreMeetingView() {
 }
@@ -147,8 +148,9 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
   MakeConnections();
 }
 
-void ShowToast(const std::string& toast) {
-  spdlog::info("showtoast: {}", toast);
+void PreMeetingView::ShowToast(const std::string& toast_str) {
+  Toast* toast = new Toast();
+  toast->showMessage(toast_str, 3000); // 显示3秒
 }
 
 void PreMeetingView::MakeConnections() {

@@ -3,36 +3,100 @@
 #include <QVBoxLayout>
 #include <spdlog/spdlog.h>
 #include "in_meeting_controller.hh"
+#include <QApplication>
+#include <QScreen>
+
+UserInfoView::UserInfoView(QWidget* parent)
+  : QWidget(parent) {
+  setFixedSize(100, 100);
+  setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
+
+  setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
+}
+
+UserInfoView::~UserInfoView() {
+}
+
+UserInfoViewContainer::UserInfoViewContainer(QWidget* parent) : QWidget(parent) {
+  setFixedSize(970, 675);
+  setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
+  setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
+//
+  layout = new QGridLayout(this);
+  layout->setAlignment(Qt::AlignCenter); // 设置布局整体居中
+}
+
+void UserInfoViewContainer::addUserInfoView(UserInfoView* view) {
+  static int currentRow = 0;
+  static int currentColumn = 0;
+  const int maxColumn = width() / view->width(); // 计算每行最多容纳的UserInfoView数量
+
+  if (currentColumn >= maxColumn) { // 需要换行
+    currentRow++;
+    currentColumn = 0;
+  }
+
+  layout->addWidget(view, currentRow, currentColumn++, Qt::AlignCenter); // 添加控件并居中对齐
+}
+
+void UserInfoViewContainer::resizeEvent(QResizeEvent* event) {
+  QWidget::resizeEvent(event);
+  // 可以在这里处理resize事件，动态调整布局
+}
 
 InMeetingView::InMeetingView(QWidget* parent)
     : QWidget(parent), controller_(std::make_shared<InMeetingController>(this)) {
+      
+      setFixedSize(1000, 800);
+      setStyleSheet("QWidget { background-color: #e2c2c6; }");
+
       // 设置布局
       QVBoxLayout* layout = new QVBoxLayout(this);
+      layout->setSpacing(0);
+      layout->setContentsMargins(15, 15, 15, 15);
 
-      // RenderViewContainer
-      renderViewContainer_ = new QWidget(this);
-      layout->addWidget(renderViewContainer_); // 添加占位
+      user_info_view_container_ = new UserInfoViewContainer();
+      user_info_view_container_->addUserInfoView(new UserInfoView());
+      user_info_view_container_->addUserInfoView(new UserInfoView());
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView()); 
+      user_info_view_container_->addUserInfoView(new UserInfoView());
+      
+      layout->addWidget(user_info_view_container_);
 
       // StreamControlContainer
       streamControlContainer_ = new QWidget(this);
-      QHBoxLayout* hbox = new QHBoxLayout(streamControlContainer_);
-      streamControlContainer_->setLayout(hbox);
+      streamControlContainer_->setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
+      QHBoxLayout* streamControlContainer_layout = new QHBoxLayout(streamControlContainer_);
+      streamControlContainer_->setFixedSize(970, 80);
+      streamControlContainer_->setLayout(streamControlContainer_layout);
 
       // 创建按钮
-      audioButton_ = new QPushButton("audio", this);
-      videoButton_ = new QPushButton("video", this);
-      screenButton_ = new QPushButton("screen", this);
+      audioButton_ = new QPushButton(this);
+      videoButton_ = new QPushButton(this);
+      screenButton_ = new QPushButton(this);
+      
+      audioButton_->setIcon(QIcon(":/audio_icon"));
+      videoButton_->setIcon(QIcon(":/video_icon"));
+      screenButton_->setIcon(QIcon(":/screen_share_icon"));
+      
+      audioButton_->setFixedSize(50, 50);
+      videoButton_->setFixedSize(50, 50);
+      screenButton_->setFixedSize(50, 50);
 
       // 设置按钮样式
-      QString buttonStyle = "QPushButton { "
-                            "width: 64px; "
-                            "height: 64px; "
-                            "border: 2px solid black; "
-                            "border-radius: 8px; "
-                            "}"
-                            "QPushButton:pressed { "
-                            "background-color: #A9A9A9;"  // 深灰色
-                            "}";
+      QString buttonStyle =     "QPushButton {"
+      "background-color: #b9929f;" // 正常状态下的背景颜色
+      "border-radius: 10px;" // 圆角
+      "border: 2px solid #2f0147;" // 无边框
+      "}"
+      "QPushButton:pressed {"
+      "background-color: #9c528b;" // 按下状态下的背景颜色
+      "}";
 
       audioButton_->setStyleSheet(buttonStyle);
       videoButton_->setStyleSheet(buttonStyle);
@@ -40,10 +104,13 @@ InMeetingView::InMeetingView(QWidget* parent)
 
 
       // 添加按钮到布局
-      hbox->addWidget(audioButton_);
-      hbox->addWidget(videoButton_);
-      hbox->addWidget(screenButton_);
+      streamControlContainer_layout->addStretch();
+      streamControlContainer_layout->addWidget(audioButton_);
+      streamControlContainer_layout->addWidget(videoButton_);
+      streamControlContainer_layout->addWidget(screenButton_);
+      streamControlContainer_layout->addStretch();
 
+      layout->addSpacing(15);
       layout->addWidget(streamControlContainer_);
 
       // MemberListContainer
@@ -84,3 +151,4 @@ void InMeetingView::onScreenClicked() {
 void InMeetingView::ShowToast(const std::string& toast) {
     // 显示提示信息
 }
+

@@ -73,6 +73,8 @@ add_executable(TinyMeeting
     utils/base64.hh
     utils/socket_helper.hh
 
+    ui_utils/toast.hh
+
     ${RESOURCES}
 )
 set_target_properties(TinyMeeting PROPERTIES

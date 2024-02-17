@@ -17,7 +17,6 @@ class PreMeetingView : public QWidget {
   ~PreMeetingView();
   void MakeConnections();
   
-private:
   void ShowToast(const std::string& toast);
 
  private:

@@ -18,6 +18,7 @@ void PreMeetingController::HandleQuickMeeting(const std::string& user_id) {
 
 void PreMeetingController::JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) {
   if (result == JoinMeetingResult::kJoinMeetingResultSuccess) {
+    view_->ShowToast(msg); 
     WindowManager::getInstance().PopPremeetingView();
     WindowManager::getInstance().PushInmeetingView();
   }
