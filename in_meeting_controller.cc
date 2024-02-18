@@ -7,6 +7,8 @@
 InMeetingController::InMeetingController(InMeetingView* view)
 : view_(view) {
   MeetingModel::getInstance().Register(this);
+  
+  view_->UpdateTitle(MeetingModel::getInstance().GetMeetingId()); 
 }
 
 InMeetingController::~InMeetingController() {
@@ -20,3 +22,8 @@ void InMeetingController::HandleVideoClick() {
 void InMeetingController::PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) {
   
 }
+
+void InMeetingController::OnUserStatusUpdate(const std::vector<UserStatus>& user_status) {
+  view_->UpdateUserStatus(user_status); 
+}
+

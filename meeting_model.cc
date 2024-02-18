@@ -61,6 +61,13 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
             if (user_map != user_map_) {
               spdlog::info("user change! {}", QJsonDocument(jsonObject).toJson(QJsonDocument::Compact).toStdString());
               user_map_ = user_map;
+              
+              std::vector<UserStatus> values;
+              for (const auto& pair : user_map_) {
+                  values.push_back(pair.second);
+              }
+              
+              NotifyUserStatusUpdate(values);
             }
           }
         } else {
@@ -98,39 +105,15 @@ void MeetingModel::QuickMeeting(const std::string& userId) {
       if (!jsonDoc.isNull() && jsonDoc.isObject()) {
         auto jsonObject = jsonDoc.object();
         QString meeting_id = jsonObject["meeting_id"].toString();
-        
         spdlog::info("quick meeting id: {}", meeting_id.toStdString());
         
-        JoinMeetingProtocol join_meeting(userId, meeting_id.toStdString());
-        
-        join_meeting.MakeRequest([=](QNetworkReply* reply) {
-          if (reply->error() == QNetworkReply::NoError) {
-            auto response = reply->readAll();
-            QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
-            if (!jsonDoc.isNull() && jsonDoc.isObject()) {
-              auto jsonObject = jsonDoc.object();
-              int result = jsonObject["result"].toBool();
-              QString msg = jsonObject["msg"].toString();
-              
-              spdlog::info("join meeting result: {}, msg: {}", result, msg.toStdString());
-              current_meeting_id_ = meeting_id.toStdString();
-              self_user_status_.user_id = userId;
-              
-              NotifyJoinComplete((JoinMeetingResult)result, msg.toStdString());
-              
-              if (result == kJoinMeetingResultSuccess) {
-                StartRequestUserStatusTimer(true); 
-              }
-            }
-          } else {
-            spdlog::info("Error in network reply: {}",
-                         reply->errorString().toStdString());
-          }
-        });
+        JoinMeeting(userId, meeting_id.toStdString());
       }
     } else {
       spdlog::info("Error in network reply: {}",
                    reply->errorString().toStdString());
+      
+      NotifyJoinComplete(kJoinMeetingResultFailed, "network error");
     }
   });
 }
@@ -196,13 +179,43 @@ void MeetingModel::SyncUserStatus() {
   });
 }
 
-void MeetingModel::JoinMeeting(const QString& meetingId) {
-  // 实现加入会议逻辑
+void MeetingModel::JoinMeeting(const std::string& userId, const std::string& meetingId) {
+  JoinMeetingProtocol join_meeting(userId, meetingId);
+  
+  join_meeting.MakeRequest([=](QNetworkReply* reply) {
+    if (reply->error() == QNetworkReply::NoError) {
+      auto response = reply->readAll();
+      QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+      if (!jsonDoc.isNull() && jsonDoc.isObject()) {
+        auto jsonObject = jsonDoc.object();
+        int result = jsonObject["result"].toInt();
+        QString msg = jsonObject["msg"].toString();
+        
+        spdlog::info("join meeting result: {}, msg: {}", result, msg.toStdString());
+        current_meeting_id_ = meetingId;
+        self_user_status_.user_id = userId;
+        
+        NotifyJoinComplete((JoinMeetingResult)result, msg.toStdString());
+        
+        if (result == kJoinMeetingResultSuccess) {
+          StartRequestUserStatusTimer(true);
+        }
+      }
+    } else {
+      spdlog::info("Error in network reply: {}",
+                   reply->errorString().toStdString());
+      NotifyJoinComplete(kJoinMeetingResultFailed, "network error");
+    }
+  });
 }
 
 void MeetingModel::HandleUserStatus(const QString& meetingId, bool mic, bool video,
                                     bool screenShare) {
   // 实现用户状态更新逻辑
+}
+
+std::string MeetingModel::GetMeetingId() {
+  return current_meeting_id_; 
 }
 
 void MeetingModel::NotifyJoinComplete(JoinMeetingResult result, const std::string& msg) {
@@ -219,3 +232,10 @@ void MeetingModel::NotifyPushMediaCompelete(MediaType media_type, PushMediaResul
   }
 }
 
+
+void MeetingModel::NotifyUserStatusUpdate(const std::vector<UserStatus>& user_status) {
+  auto delegates(delegates_);
+  for (auto delegate : delegates) {
+    delegate->OnUserStatusUpdate(user_status);
+  }
+}

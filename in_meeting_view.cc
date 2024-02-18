@@ -5,13 +5,106 @@
 #include "in_meeting_controller.hh"
 #include <QApplication>
 #include <QScreen>
+#include <QLabel>
+extern "C" {
+#include <libavutil/avutil.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/opt.h>
+#include <libswresample/swresample.h>
+#include <libswscale/swscale.h>
+}
 
-UserInfoView::UserInfoView(QWidget* parent)
-  : QWidget(parent) {
+VideoView::VideoView(QWidget* parent = nullptr)
+: QWidget(parent)
+{}
+
+VideoView::~VideoView() {}
+
+void VideoView::OnFrame(std::shared_ptr<AVFRAME> frame) {
+  if (frame) {
+    QImage image = convertToQImage(frame);
+    emit frameReady(image);
+  }
+}
+
+void VideoView::paintEvent(QPaintEvent* event) {
+  QPainter painter(this);
+  if (!current_frame_.isNull()) {
+    QSize windowSize = size();
+    QImage scaledFrame = current_frame_.scaled(windowSize, Qt::KeepAspectRatio,
+                                               Qt::SmoothTransformation);
+    int startX = (windowSize.width() - scaledFrame.width()) / 2;
+    int startY = (windowSize.height() - scaledFrame.height()) / 2;
+    painter.drawImage(startX, startY, scaledFrame);
+  }
+}
+
+void VideoView::renderFrame(QImage frame) {
+  current_frame_ = frame;
+  update();
+}
+
+QImage VideoView::ConvertToQImage(std::shared_ptr<AVFRAME> f) {
+  AVFrame* frame = (AVFrame*)f->frame;
+  if (!frame) {
+    return QImage();
+  }
+  
+  static SwsContext* sws_ctx = nullptr;
+  static AVPixelFormat last_format = AV_PIX_FMT_NONE;
+  AVPixelFormat src_pix_fmt = (AVPixelFormat)frame->format;
+  AVPixelFormat dst_pix_fmt = AV_PIX_FMT_RGBA;
+
+  // 检查是否需要重新创建转换上下文
+  if (!sws_ctx || frame->format != last_format) {
+    last_format = src_pix_fmt;
+    if (sws_ctx) {
+      sws_freeContext(sws_ctx);
+    }
+    sws_ctx = sws_getContext(frame->width, frame->height, src_pix_fmt,
+                             frame->width, frame->height, dst_pix_fmt,
+                             SWS_BILINEAR, nullptr, nullptr, nullptr);
+    if (!sws_ctx) {
+      return QImage();
+    }
+  }
+
+  uint8_t* dest[4] = {nullptr};
+  int dest_linesize[4] = {0};
+  if (av_image_alloc(dest, dest_linesize, frame->width, frame->height,
+                     dst_pix_fmt, 1) < 0) {
+    return QImage();
+  }
+
+  sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, dest,
+            dest_linesize);
+
+  QImage img(dest[0], frame->width, frame->height, dest_linesize[0],
+             QImage::Format_RGBA8888);
+
+  av_freep(&dest[0]);
+
+  return img;
+}
+
+UserInfoView::UserInfoView(const UserStatus& us, QWidget* parent)
+: QWidget(parent), status_(us) {
   setFixedSize(100, 100);
   setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
-
   setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
+  
+  layout_ = new QVBoxLayout(this);
+  
+  QLabel* name = new QLabel();
+  name->setText(status_.user_id.c_str());
+  name->setStyleSheet("QLabel {"
+                      "border: none;"
+                      "background-color: #9c528b;"
+                      "color: #b9929f;"
+                      "}");
+  name->setAlignment(Qt::AlignCenter);
+  
+  layout_->addWidget(name);
 }
 
 UserInfoView::~UserInfoView() {
@@ -27,16 +120,33 @@ UserInfoViewContainer::UserInfoViewContainer(QWidget* parent) : QWidget(parent) 
 }
 
 void UserInfoViewContainer::addUserInfoView(UserInfoView* view) {
-  static int currentRow = 0;
-  static int currentColumn = 0;
   const int maxColumn = width() / view->width(); // 计算每行最多容纳的UserInfoView数量
 
-  if (currentColumn >= maxColumn) { // 需要换行
-    currentRow++;
-    currentColumn = 0;
+  if (currentColumn_ >= maxColumn) { // 需要换行
+    currentRow_++;
+    currentColumn_ = 0;
   }
 
-  layout->addWidget(view, currentRow, currentColumn++, Qt::AlignCenter); // 添加控件并居中对齐
+  layout->addWidget(view, currentRow_, currentColumn_++, Qt::AlignCenter); // 添加控件并居中对齐
+}
+
+void UserInfoViewContainer::removeAllUserInfoView() {
+  currentColumn_ = 0;
+  currentRow_ = 0;
+  
+  if (layout != nullptr) {
+    // 从布局中移除所有项目
+    QLayoutItem* item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+      // 如果项目是一个小部件，删除小部件
+      if (item->widget()) {
+          delete item->widget();
+      }
+      // 如果项目是一个布局，则递归地删除所有子项目
+      delete item;
+    }
+  }
+
 }
 
 void UserInfoViewContainer::resizeEvent(QResizeEvent* event) {
@@ -56,15 +166,6 @@ InMeetingView::InMeetingView(QWidget* parent)
       layout->setContentsMargins(15, 15, 15, 15);
 
       user_info_view_container_ = new UserInfoViewContainer();
-      user_info_view_container_->addUserInfoView(new UserInfoView());
-      user_info_view_container_->addUserInfoView(new UserInfoView());
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView()); 
-      user_info_view_container_->addUserInfoView(new UserInfoView());
       
       layout->addWidget(user_info_view_container_);
 
@@ -117,11 +218,21 @@ InMeetingView::InMeetingView(QWidget* parent)
       memberListContainer_ = new QWidget(this);
       layout->addWidget(memberListContainer_); // 添加占位
 
-      // 设置标题
-      setWindowTitle("meeting id: xxx");
+    // 初始化连接
+    MakeConnections();
+}
 
-      // 初始化连接
-      MakeConnections();
+void InMeetingView::UpdateTitle(const std::string& meeting_id) {
+  std::string title = "meeting id:" + meeting_id;
+  setWindowTitle(title.c_str());
+}
+
+void InMeetingView::UpdateUserStatus(const std::vector<UserStatus>& user_status) {
+  user_info_view_container_->removeAllUserInfoView();
+  
+  for (auto us : user_status) {
+    user_info_view_container_->addUserInfoView(new UserInfoView(us));
+  }
 }
 
 InMeetingView::~InMeetingView() {

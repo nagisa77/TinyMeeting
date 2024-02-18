@@ -124,10 +124,17 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
       "}"
   );
   
+  const char* error_label_style = "QLabel { color : red; font-size : 12px; }";
+  
   require_user_id_label_ = new QLabel();
   require_user_id_label_->setText("User id is required");
-  require_user_id_label_->setStyleSheet("QLabel { color : red; font-size : 12px; }");
+  require_user_id_label_->setStyleSheet(error_label_style);
   require_user_id_label_->setVisible(false);
+  
+  require_meeting_id_label_ = new QLabel();
+  require_meeting_id_label_->setText("Meeting id is required");
+  require_meeting_id_label_->setStyleSheet(error_label_style);
+  require_meeting_id_label_->setVisible(false);
 
   QVBoxLayout* layout = new QVBoxLayout(this);
   layout->setContentsMargins(30, 30, 30, 30);
@@ -136,6 +143,7 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
   layout->addWidget(meeting_label);
   layout->addWidget(join_a_meeting_label);
   layout->addStretch();
+  layout->addWidget(require_meeting_id_label_);
   layout->addWidget(meeting_id_edit_);
   layout->addSpacing(15);
   layout->addWidget(require_user_id_label_);
@@ -156,12 +164,41 @@ void PreMeetingView::ShowToast(const std::string& toast_str) {
 void PreMeetingView::MakeConnections() {
   connect(quick_meeting_button_, &QPushButton::clicked, this,
           [=]() {
+    bool should_call_controller = true;
     if (user_name_edit_->text().isEmpty()) {
       require_user_id_label_->setVisible(true);
-      return;
+      should_call_controller = false;
     } else {
       require_user_id_label_->setVisible(false);
     }
-    controller_->HandleQuickMeeting(user_name_edit_->text().toStdString());
+    
+    require_meeting_id_label_->setVisible(false);
+    
+    if (should_call_controller) {
+      controller_->HandleQuickMeeting(user_name_edit_->text().toStdString());
+    }
+  });
+  
+  connect(join_meeting_button_, &QPushButton::clicked, this,
+          [=]() {
+    bool should_call_controller = true;
+    if (user_name_edit_->text().isEmpty()) {
+      require_user_id_label_->setVisible(true);
+      should_call_controller = false;
+    } else {
+      require_user_id_label_->setVisible(false);
+    }
+    
+    if (meeting_id_edit_->text().isEmpty()) {
+      require_meeting_id_label_->setVisible(true);
+      should_call_controller = false; 
+    } else {
+      require_meeting_id_label_->setVisible(false);
+    }
+    
+    if (should_call_controller) {
+      controller_->HandleJoinMeeting(user_name_edit_->text().toStdString(),
+                                     meeting_id_edit_->text().toStdString()); 
+    }
   });
 }

@@ -13,6 +13,7 @@ class InMeetingController : public MeetingModelDelegate {
   
   void HandleVideoClick(); 
   void PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) override;
+  void OnUserStatusUpdate(const std::vector<UserStatus>& user_status) override;
 
 private:
   InMeetingView* view_ = nullptr;

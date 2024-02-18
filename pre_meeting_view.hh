@@ -20,11 +20,12 @@ class PreMeetingView : public QWidget {
   void ShowToast(const std::string& toast);
 
  private:
-  QPushButton* quick_meeting_button_;
-  QPushButton* join_meeting_button_;
-  QLineEdit* meeting_id_edit_;
-  QLineEdit* user_name_edit_;
-  QLabel* require_user_id_label_;
+  QPushButton* quick_meeting_button_ = nullptr;
+  QPushButton* join_meeting_button_ = nullptr;
+  QLineEdit* meeting_id_edit_ = nullptr;
+  QLineEdit* user_name_edit_ = nullptr;
+  QLabel* require_user_id_label_ = nullptr;
+  QLabel* require_meeting_id_label_ = nullptr;
   std::shared_ptr<PreMeetingController> controller_;
 };
 
