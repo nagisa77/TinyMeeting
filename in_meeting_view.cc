@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QScreen>
 #include <QLabel>
+#include <QPainter>
 extern "C" {
 #include <libavutil/avutil.h>
 #include <libavutil/imgutils.h>
@@ -14,7 +15,7 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-VideoView::VideoView(QWidget* parent = nullptr)
+VideoView::VideoView(QWidget* parent)
 : QWidget(parent)
 {}
 
@@ -22,7 +23,7 @@ VideoView::~VideoView() {}
 
 void VideoView::OnFrame(std::shared_ptr<AVFRAME> frame) {
   if (frame) {
-    QImage image = convertToQImage(frame);
+    QImage image = ConvertToQImage(frame);
     emit frameReady(image);
   }
 }
@@ -45,7 +46,7 @@ void VideoView::renderFrame(QImage frame) {
 }
 
 QImage VideoView::ConvertToQImage(std::shared_ptr<AVFRAME> f) {
-  AVFrame* frame = (AVFrame*)f->frame;
+  AVFrame* frame = (AVFrame*)f->frame_;
   if (!frame) {
     return QImage();
   }

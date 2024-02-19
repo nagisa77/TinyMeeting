@@ -15,8 +15,7 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
 
   setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint);
 
-  setFixedWidth(450);
-  setFixedHeight(450);
+  setFixedSize(450, 450);
   // Set background color and border radius
   setStyleSheet(
       "PreMeetingView {"
@@ -154,10 +153,12 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
   layout->addWidget(quick_meeting_button_);
 
   MakeConnections();
+  
+  update();
 }
 
 void PreMeetingView::ShowToast(const std::string& toast_str) {
-  Toast* toast = new Toast();
+  Toast* toast = new Toast(this);
   toast->showMessage(toast_str, 3000); // 显示3秒
 }
 
