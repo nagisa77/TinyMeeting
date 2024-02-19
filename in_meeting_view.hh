@@ -22,7 +22,7 @@ public:
   
   void OnFrame(std::shared_ptr<AVFRAME> frame);
   void paintEvent(QPaintEvent* event) override;
-  void renderFrame(QImage frame);
+  void RenderFrame(QImage frame);
   
 signals:
   void frameReady(const QImage& image);
@@ -47,22 +47,25 @@ private:
   QVBoxLayout* layout_ = nullptr;
 };
 
-class UserInfoViewContainer : public QWidget {
+class InMeetingViewContainer : public QWidget {
   Q_OBJECT
 
 private:
-  QGridLayout *layout;
+  QGridLayout *layout_;
 
 public:
-  explicit UserInfoViewContainer(QWidget* parent = nullptr);
+  explicit InMeetingViewContainer(QWidget* parent = nullptr);
   void addUserInfoView(UserInfoView* view);
-  void removeAllUserInfoView();
+  void addVideoView(VideoView* view);
+  void removeAllSubView();
 protected:
   void resizeEvent(QResizeEvent* event) override;
   
 private:
-  int currentRow_ = 0;
-  int currentColumn_ = 0;
+  int user_info_current_row_ = 0;
+  int user_info_current_column_ = 0;
+  int video_view_current_row_ = 0;
+  int video_view_current_column_ = 0;
 };
 
 class InMeetingView : public QWidget {
@@ -86,7 +89,7 @@ private:
 
 private:
   std::shared_ptr<InMeetingController> controller_;
-  UserInfoViewContainer* user_info_view_container_ = nullptr;
+  InMeetingViewContainer* user_info_view_container_ = nullptr;
   QWidget* streamControlContainer_ = nullptr;
   QWidget* memberListContainer_ = nullptr;
   QPushButton* audioButton_ = nullptr;

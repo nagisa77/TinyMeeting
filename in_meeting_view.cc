@@ -17,7 +17,11 @@ extern "C" {
 
 VideoView::VideoView(QWidget* parent)
 : QWidget(parent)
-{}
+{
+  setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
+  setStyleSheet("QWidget { background-color: green; border: 2px solid #2f0147; border-radius: 10px; }");
+  setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+}
 
 VideoView::~VideoView() {}
 
@@ -40,7 +44,7 @@ void VideoView::paintEvent(QPaintEvent* event) {
   }
 }
 
-void VideoView::renderFrame(QImage frame) {
+void VideoView::RenderFrame(QImage frame) {
   current_frame_ = frame;
   update();
 }
@@ -111,34 +115,48 @@ UserInfoView::UserInfoView(const UserStatus& us, QWidget* parent)
 UserInfoView::~UserInfoView() {
 }
 
-UserInfoViewContainer::UserInfoViewContainer(QWidget* parent) : QWidget(parent) {
+InMeetingViewContainer::InMeetingViewContainer(QWidget* parent) : QWidget(parent) {
   setFixedSize(970, 675);
   setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
   setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
 //
-  layout = new QGridLayout(this);
-  layout->setAlignment(Qt::AlignCenter); // 设置布局整体居中
+  layout_ = new QGridLayout(this);
+  layout_->setAlignment(Qt::AlignCenter); // 设置布局整体居中
 }
 
-void UserInfoViewContainer::addUserInfoView(UserInfoView* view) {
+void InMeetingViewContainer::addUserInfoView(UserInfoView* view) {
   const int maxColumn = width() / view->width(); // 计算每行最多容纳的UserInfoView数量
 
-  if (currentColumn_ >= maxColumn) { // 需要换行
-    currentRow_++;
-    currentColumn_ = 0;
+  if (user_info_current_column_ >= maxColumn) { // 需要换行
+    user_info_current_row_++;
+    user_info_current_column_ = 0;
   }
 
-  layout->addWidget(view, currentRow_, currentColumn_++, Qt::AlignCenter); // 添加控件并居中对齐
+  layout_->addWidget(view, user_info_current_row_, user_info_current_column_++, Qt::AlignCenter); // 添加控件并居中对齐
 }
 
-void UserInfoViewContainer::removeAllUserInfoView() {
-  currentColumn_ = 0;
-  currentRow_ = 0;
+void InMeetingViewContainer::addVideoView(VideoView* view) {
+  // Check if we need to move to the next row.
+  if (video_view_current_column_ >= 3) {
+    video_view_current_column_ = 0; // Reset column for the next row.
+    video_view_current_row_++; // Move to the next row.
+  }
+
+  // Add the video view to the current position in the grid.
+  layout_->addWidget(view, video_view_current_row_, video_view_current_column_);
+
+  // Prepare for the next video view addition.
+  video_view_current_column_++; // Move to the next column for the next addition.
+}
+
+void InMeetingViewContainer::removeAllSubView() {
+  user_info_current_column_ = 0;
+  user_info_current_row_ = 0;
   
-  if (layout != nullptr) {
+  if (layout_ != nullptr) {
     // 从布局中移除所有项目
     QLayoutItem* item;
-    while ((item = layout->takeAt(0)) != nullptr) {
+    while ((item = layout_->takeAt(0)) != nullptr) {
       // 如果项目是一个小部件，删除小部件
       if (item->widget()) {
           delete item->widget();
@@ -150,7 +168,7 @@ void UserInfoViewContainer::removeAllUserInfoView() {
 
 }
 
-void UserInfoViewContainer::resizeEvent(QResizeEvent* event) {
+void InMeetingViewContainer::resizeEvent(QResizeEvent* event) {
   QWidget::resizeEvent(event);
   // 可以在这里处理resize事件，动态调整布局
 }
@@ -166,7 +184,7 @@ InMeetingView::InMeetingView(QWidget* parent)
       layout->setSpacing(0);
       layout->setContentsMargins(15, 15, 15, 15);
 
-      user_info_view_container_ = new UserInfoViewContainer();
+      user_info_view_container_ = new InMeetingViewContainer();
       
       layout->addWidget(user_info_view_container_);
 
@@ -229,10 +247,14 @@ void InMeetingView::UpdateTitle(const std::string& user_id, const std::string& m
 }
 
 void InMeetingView::UpdateUserStatus(const std::vector<UserStatus>& user_status) {
-  user_info_view_container_->removeAllUserInfoView();
+  user_info_view_container_->removeAllSubView();
   
   for (auto us : user_status) {
-    user_info_view_container_->addUserInfoView(new UserInfoView(us));
+//    user_info_view_container_->addUserInfoView(new UserInfoView(us));
+    // test code, 
+    user_info_view_container_->addVideoView(new VideoView());
+    user_info_view_container_->addVideoView(new VideoView());
+    user_info_view_container_->addVideoView(new VideoView());
   }
 }
 
