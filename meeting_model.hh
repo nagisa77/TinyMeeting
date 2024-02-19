@@ -21,7 +21,9 @@ public:
 
 class MeetingModel : 
 public QObject,
-public StreamPusherListener {
+public StreamPusherListener, 
+public StreamPullerListener
+{
 public:
   MeetingModel();
   
@@ -40,9 +42,13 @@ public:
   
   // getter
   std::string GetMeetingId(); 
+  std::string GetSelfUserId();
   
   // StreamPusherListener
   void OnPusherStreamServerError(MediaType media_type) override;
+  
+  // StreamPullerListener
+  void OnPullFrame(const std::string& user_id, MediaType media_type, std::shared_ptr<AVFRAME> frame) override;
 
 private:
   void NotifyJoinComplete(JoinMeetingResult result, const std::string& msg);

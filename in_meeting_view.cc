@@ -223,8 +223,8 @@ InMeetingView::InMeetingView(QWidget* parent)
     MakeConnections();
 }
 
-void InMeetingView::UpdateTitle(const std::string& meeting_id) {
-  std::string title = "meeting id:" + meeting_id;
+void InMeetingView::UpdateTitle(const std::string& user_id, const std::string& meeting_id) {
+  std::string title = "user_id: " + user_id + ", meeting id: " + meeting_id;
   setWindowTitle(title.c_str());
 }
 

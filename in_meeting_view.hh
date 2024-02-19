@@ -72,7 +72,7 @@ public:
   explicit InMeetingView(QWidget* parent = nullptr);
   ~InMeetingView() override;
   
-  void UpdateTitle(const std::string& meeting_id);
+  void UpdateTitle(const std::string& user_id, const std::string& meeting_id);
   void UpdateUserStatus(const std::vector<UserStatus>& user_status);
 
 private slots:

@@ -19,10 +19,16 @@ static inline AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
 }
 
 StreamPuller::StreamPuller(const std::string& stream_id, const std::string& ip, int port, const std::string& user_id, MediaType media_type)
-: stream_id_(stream_id), ip_(ip), port_(port), user_id_(user_id), media_type_(media_type) {}
+: stream_id_(stream_id), ip_(ip), port_(port), user_id_(user_id), media_type_(media_type) {
+  codec_thread_ = std::make_unique<boost::thread>(&StreamPuller::CodecFrameFromServer, this);
+}
 
 
 StreamPuller::~StreamPuller() {
+  // 在析构函数中停止线程
+  if (codec_thread_ && codec_thread_->joinable()) {
+    codec_thread_->join();
+  }
 }
 
 int StreamPuller::CodecFrameFromServer() {
@@ -81,6 +87,7 @@ int StreamPuller::CodecFrameFromServer() {
         }
         
         std::shared_ptr<AVFRAME> av_frame = std::make_shared<AVFRAME>();
+        av_frame->frame_ = av_frame_alloc();
         auto frame = AVFRAME2AVframe(av_frame);
       
         while (true) {

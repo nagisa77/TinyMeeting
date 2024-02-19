@@ -7,6 +7,7 @@
 #include <boost/thread.hpp>
 #include <QObject>
 #include "media_capture/frame.hh"
+#include "header.hh"
 
 class StreamPullerListener {
 public:
@@ -20,7 +21,7 @@ public:
   StreamPuller(const std::string& stream_id, const std::string& ip, int port, const std::string& user_id, MediaType media_type);
   ~StreamPuller();
 
-  int CodecFrameFromServer(); 
+  int CodecFrameFromServer();
   void RegisterListener(StreamPullerListener* listener);
   void UnRegisterListener(StreamPullerListener* listener);
 
@@ -31,7 +32,7 @@ private:
   std::string user_id_;
   MediaType media_type_;
 
-  
+  std::unique_ptr<boost::thread> codec_thread_;
   StreamPullerListener* listener_ = nullptr;
 };
 

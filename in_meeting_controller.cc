@@ -8,7 +8,7 @@ InMeetingController::InMeetingController(InMeetingView* view)
 : view_(view) {
   MeetingModel::getInstance().Register(this);
   
-  view_->UpdateTitle(MeetingModel::getInstance().GetMeetingId()); 
+  view_->UpdateTitle(MeetingModel::getInstance().GetSelfUserId(), MeetingModel::getInstance().GetMeetingId()); 
 }
 
 InMeetingController::~InMeetingController() {

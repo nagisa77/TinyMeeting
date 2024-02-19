@@ -47,11 +47,11 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
 
               UserStatus userStatus;
               userStatus.user_id = userId.toStdString();
-              userStatus.is_audio_on = userStatusJson["audio_on"].toBool();
+              userStatus.is_audio_on = userStatusJson["is_audio_on"].toBool();
               userStatus.audio_stream_id = userStatusJson["audio_stream_id"].toString().toStdString();
-              userStatus.is_screen_on = userStatusJson["screen_on"].toBool();
+              userStatus.is_screen_on = userStatusJson["is_screen_on"].toBool();
               userStatus.screen_stream_id = userStatusJson["screen_stream_id"].toString().toStdString();
-              userStatus.is_video_on = userStatusJson["video_on"].toBool();
+              userStatus.is_video_on = userStatusJson["is_video_on"].toBool();
               userStatus.video_stream_id = userStatusJson["video_stream_id"].toString().toStdString();
 
               // 将用户状态添加到 map 中
@@ -67,7 +67,15 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
                 auto user_id = entry.first;
                 if (entry.second.is_video_on) {
                   if (!stream_pullers_[user_id][kMediaTypeVideo]) {
-                    stream_pullers_[user_id][kMediaTypeVideo] = 
+                    if (self_user_status_.user_id  == user_id) {
+                      // 目前不拉自己的流
+                      continue;
+                    }
+                    auto puller =  std::make_shared<StreamPuller>(entry.second.video_stream_id,
+                                                                  "127.0.0.1", 10086,
+                                                                  entry.second.user_id, kMediaTypeVideo);
+                    stream_pullers_[user_id][kMediaTypeVideo] = puller;
+                    puller->RegisterListener(this); 
                   }
                 }
                 
@@ -101,6 +109,10 @@ void MeetingModel::OnPusherStreamServerError(MediaType media_type) {
     
     NotifyPushMediaCompelete(kMediaTypeVideo, kPushMediaResultFailed, "media sever error");
   }
+}
+
+void MeetingModel::OnPullFrame(const std::string& user_id, MediaType media_type, std::shared_ptr<AVFRAME> frame) {
+  spdlog::info("OnPullFrame({}, {}, ...)", user_id, (int)media_type);
 }
 
 void MeetingModel::QuickMeeting(const std::string& userId) {
@@ -223,6 +235,10 @@ void MeetingModel::HandleUserStatus(const QString& meetingId, bool mic, bool vid
 
 std::string MeetingModel::GetMeetingId() {
   return current_meeting_id_; 
+}
+
+std::string MeetingModel::GetSelfUserId() {
+  return self_user_status_.user_id;
 }
 
 void MeetingModel::NotifyJoinComplete(JoinMeetingResult result, const std::string& msg) {
