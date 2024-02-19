@@ -10,14 +10,16 @@
 #include <QVBoxLayout>
 #include "media_capture/frame.hh"
 #include "header.hh"
+#include "stream_puller.hh"
 
 class InMeetingController;
+class VideoViewController;
 
 class VideoView : public QWidget {
   Q_OBJECT
-
+  
 public:
-  explicit VideoView(QWidget* parent = nullptr);
+  explicit VideoView(std::shared_ptr<StreamPuller> puller, QWidget* parent = nullptr);
   ~VideoView() override;
   
   void OnFrame(std::shared_ptr<AVFRAME> frame);
@@ -29,9 +31,10 @@ signals:
   
 private:
   QImage ConvertToQImage(std::shared_ptr<AVFRAME> frame);
-
+  
 private:
   QImage current_frame_;
+  std::shared_ptr<VideoViewController> controller_;
 };
 
 class UserInfoView : public QWidget {
@@ -76,7 +79,8 @@ public:
   ~InMeetingView() override;
   
   void UpdateTitle(const std::string& user_id, const std::string& meeting_id);
-  void UpdateUserStatus(const std::vector<UserStatus>& user_status);
+  void UpdateUserInfoViews(const std::vector<UserStatus>& user_status);
+  void UpdateVideoViews(const std::vector<UserStatus>& user_status, const std::vector<std::shared_ptr<StreamPuller>>& stream_pullers);
 
 private slots:
   void onAudioClicked();
@@ -90,11 +94,11 @@ private:
 private:
   std::shared_ptr<InMeetingController> controller_;
   InMeetingViewContainer* user_info_view_container_ = nullptr;
-  QWidget* streamControlContainer_ = nullptr;
+  QWidget* stream_control_container_ = nullptr;
   QWidget* memberListContainer_ = nullptr;
-  QPushButton* audioButton_ = nullptr;
-  QPushButton* videoButton_ = nullptr;
-  QPushButton* screenButton_ = nullptr;
+  QPushButton* audio_button_ = nullptr;
+  QPushButton* video_button_ = nullptr;
+  QPushButton* screen_button_ = nullptr;
 };
 
 #endif  // In_MEETING_VIEW_HH

@@ -43,6 +43,7 @@ public:
   // getter
   std::string GetMeetingId(); 
   std::string GetSelfUserId();
+  std::shared_ptr<StreamPuller> GetStreamPuller(const std::string& user_id, MediaType media_type); 
   
   // StreamPusherListener
   void OnPusherStreamServerError(MediaType media_type) override;

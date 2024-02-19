@@ -68,10 +68,10 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
                 if (entry.second.is_video_on) {
                   if (!stream_pullers_[user_id][kMediaTypeVideo]) {
                     if (self_user_status_.user_id  == user_id) {
-                      // 目前不拉自己的流
-                      continue;
+//                      // 目前不拉自己的流
+//                      continue;
                     }
-                    auto puller =  std::make_shared<StreamPuller>(entry.second.video_stream_id,
+                    auto puller = std::make_shared<StreamPuller>(entry.second.video_stream_id,
                                                                   "127.0.0.1", 10086,
                                                                   entry.second.user_id, kMediaTypeVideo);
                     stream_pullers_[user_id][kMediaTypeVideo] = puller;
@@ -239,6 +239,10 @@ std::string MeetingModel::GetMeetingId() {
 
 std::string MeetingModel::GetSelfUserId() {
   return self_user_status_.user_id;
+}
+
+std::shared_ptr<StreamPuller> MeetingModel::GetStreamPuller(const std::string& user_id, MediaType media_type) {
+  return stream_pullers_[user_id][media_type]; 
 }
 
 void MeetingModel::NotifyJoinComplete(JoinMeetingResult result, const std::string& msg) {

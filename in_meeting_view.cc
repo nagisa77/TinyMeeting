@@ -15,12 +15,16 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-VideoView::VideoView(QWidget* parent)
+VideoView::VideoView(std::shared_ptr<StreamPuller> puller, QWidget* parent)
 : QWidget(parent)
 {
+  controller_ = std::make_shared<VideoViewController>(puller, this);
+  
   setAttribute(Qt::WA_StyledBackground, true); // 启用样式表背景
   setStyleSheet("QWidget { background-color: green; border: 2px solid #2f0147; border-radius: 10px; }");
   setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  
+  connect(this, &VideoView::frameReady, this, &VideoView::RenderFrame);
 }
 
 VideoView::~VideoView() {}
@@ -189,24 +193,24 @@ InMeetingView::InMeetingView(QWidget* parent)
       layout->addWidget(user_info_view_container_);
 
       // StreamControlContainer
-      streamControlContainer_ = new QWidget(this);
-      streamControlContainer_->setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
-      QHBoxLayout* streamControlContainer_layout = new QHBoxLayout(streamControlContainer_);
-      streamControlContainer_->setFixedSize(970, 80);
-      streamControlContainer_->setLayout(streamControlContainer_layout);
+      stream_control_container_ = new QWidget(this);
+      stream_control_container_->setStyleSheet("QWidget { background-color: #b9929f; border: 2px solid #2f0147; border-radius: 10px; }");
+      QHBoxLayout* stream_control_container_layout = new QHBoxLayout(stream_control_container_);
+      stream_control_container_->setFixedSize(970, 80);
+      stream_control_container_->setLayout(stream_control_container_layout);
 
       // 创建按钮
-      audioButton_ = new QPushButton(this);
-      videoButton_ = new QPushButton(this);
-      screenButton_ = new QPushButton(this);
+      audio_button_ = new QPushButton(this);
+      video_button_ = new QPushButton(this);
+      screen_button_ = new QPushButton(this);
       
-      audioButton_->setIcon(QIcon(":/audio_icon"));
-      videoButton_->setIcon(QIcon(":/video_icon"));
-      screenButton_->setIcon(QIcon(":/screen_share_icon"));
+      audio_button_->setIcon(QIcon(":/audio_icon"));
+      video_button_->setIcon(QIcon(":/video_icon"));
+      screen_button_->setIcon(QIcon(":/screen_share_icon"));
       
-      audioButton_->setFixedSize(50, 50);
-      videoButton_->setFixedSize(50, 50);
-      screenButton_->setFixedSize(50, 50);
+      audio_button_->setFixedSize(50, 50);
+      video_button_->setFixedSize(50, 50);
+      screen_button_->setFixedSize(50, 50);
 
       // 设置按钮样式
       QString buttonStyle =     "QPushButton {"
@@ -218,20 +222,20 @@ InMeetingView::InMeetingView(QWidget* parent)
       "background-color: #9c528b;" // 按下状态下的背景颜色
       "}";
 
-      audioButton_->setStyleSheet(buttonStyle);
-      videoButton_->setStyleSheet(buttonStyle);
-      screenButton_->setStyleSheet(buttonStyle);
+      audio_button_->setStyleSheet(buttonStyle);
+      video_button_->setStyleSheet(buttonStyle);
+      screen_button_->setStyleSheet(buttonStyle);
 
 
       // 添加按钮到布局
-      streamControlContainer_layout->addStretch();
-      streamControlContainer_layout->addWidget(audioButton_);
-      streamControlContainer_layout->addWidget(videoButton_);
-      streamControlContainer_layout->addWidget(screenButton_);
-      streamControlContainer_layout->addStretch();
+      stream_control_container_layout->addStretch();
+      stream_control_container_layout->addWidget(audio_button_);
+      stream_control_container_layout->addWidget(video_button_);
+      stream_control_container_layout->addWidget(screen_button_);
+      stream_control_container_layout->addStretch();
 
       layout->addSpacing(15);
-      layout->addWidget(streamControlContainer_);
+      layout->addWidget(stream_control_container_);
 
       // MemberListContainer
       memberListContainer_ = new QWidget(this);
@@ -246,15 +250,22 @@ void InMeetingView::UpdateTitle(const std::string& user_id, const std::string& m
   setWindowTitle(title.c_str());
 }
 
-void InMeetingView::UpdateUserStatus(const std::vector<UserStatus>& user_status) {
+void InMeetingView::UpdateUserInfoViews(const std::vector<UserStatus>& user_status) {
   user_info_view_container_->removeAllSubView();
   
   for (auto us : user_status) {
-//    user_info_view_container_->addUserInfoView(new UserInfoView(us));
-    // test code, 
-    user_info_view_container_->addVideoView(new VideoView());
-    user_info_view_container_->addVideoView(new VideoView());
-    user_info_view_container_->addVideoView(new VideoView());
+    user_info_view_container_->addUserInfoView(new UserInfoView(us));
+  }
+}
+
+void InMeetingView::UpdateVideoViews(const std::vector<UserStatus>& user_status, const std::vector<std::shared_ptr<StreamPuller>>& stream_pullers) {
+  user_info_view_container_->removeAllSubView();
+
+  for (int i = 0; i < user_status.size(); ++i) {
+    auto us = user_status[i];
+    if (us.is_video_on || us.is_screen_on) {
+      user_info_view_container_->addVideoView(new VideoView(stream_pullers[i]));
+    }
   }
 }
 
@@ -263,9 +274,9 @@ InMeetingView::~InMeetingView() {
 }
 
 void InMeetingView::MakeConnections() {
-    connect(audioButton_, &QPushButton::clicked, this, &InMeetingView::onAudioClicked);
-    connect(videoButton_, &QPushButton::clicked, this, &InMeetingView::onVideoClicked);
-    connect(screenButton_, &QPushButton::clicked, this, &InMeetingView::onScreenClicked);
+    connect(audio_button_, &QPushButton::clicked, this, &InMeetingView::onAudioClicked);
+    connect(video_button_, &QPushButton::clicked, this, &InMeetingView::onVideoClicked);
+    connect(screen_button_, &QPushButton::clicked, this, &InMeetingView::onScreenClicked);
 }
 
 void InMeetingView::onAudioClicked() {
