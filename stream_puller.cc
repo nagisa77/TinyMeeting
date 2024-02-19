@@ -14,6 +14,10 @@ extern "C" {
 using JSON = nlohmann::json;
 using boost::asio::ip::tcp;
 
+AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
+  return (AVFrame*)frame->frame_;
+}
+
 StreamPuller::StreamPuller(const std::string& stream_id, const std::string& ip, int port)
 : stream_id_(stream_id), ip_(ip), port_(port) {}
 
@@ -76,8 +80,9 @@ int StreamPuller::CodecFrameFromServer() {
           return 1;
         }
         
-        auto frame = createAVFramePtr();
-
+        std::shared_ptr<AVFRAME> av_frame = std::make_shared<AVFRAME>();
+        auto frame = AVFRAME2AVframe(av_frame);
+      
         while (true) {
           std::shared_ptr<AVPacket> paket = receive_packet(socket);
           int send_res = avcodec_send_packet(codec_ctx, paket.get());
@@ -85,7 +90,7 @@ int StreamPuller::CodecFrameFromServer() {
           logAVPacket(paket.get());
           
           if (send_res == 0) {
-            int ret = avcodec_receive_frame(codec_ctx, frame.get());
+            int ret = avcodec_receive_frame(codec_ctx, frame);
 
             if (ret == 0) {
               int width = frame->width;
@@ -94,7 +99,9 @@ int StreamPuller::CodecFrameFromServer() {
                 continue;
               }
               
-//              v.OnVideoFrame(frame);
+              if (listener_) {
+                listener_->OnPullFrame(stream_id_, av_frame);
+              }
             }
           }
         }
@@ -104,3 +111,10 @@ int StreamPuller::CodecFrameFromServer() {
       }
 }
 
+void StreamPuller::RegisterListener(StreamPullerListener* listener) {
+  listener_ = listener;
+}
+
+void StreamPuller::UnRegisterListener(StreamPullerListener* listener) {
+  listener_ = nullptr;
+}

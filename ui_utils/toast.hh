@@ -22,9 +22,17 @@ public:
   void showMessage(const std::string& message, int duration_ms) {
     label->setText(message.c_str());
     adjustSize(); // 调整大小以适应文本
-    auto screen = QApplication::primaryScreen();
-    auto screenSize = screen->geometry();
-    move(screenSize.center() - rect().center()); // 使用QScreen居中显示
+
+    if (parentWidget() != nullptr) {
+      // 如果存在parent，将消息框移动到parent中间
+      move((parentWidget()->width() - width()) / 2, (parentWidget()->height() - height()) / 2);
+    } else {
+      // 如果不存在parent，使用原来的逻辑将消息框移动到屏幕中间
+      auto screen = QApplication::primaryScreen(); // todo: 窗口所在screen
+      auto screenSize = screen->geometry();
+      move(screenSize.center() - rect().center());
+    }
+
     QTimer::singleShot(duration_ms, this, &QWidget::hide); // duration_ms毫秒后自动隐藏
     show();
   }

@@ -7,6 +7,7 @@
 #include <memory>
 #include <vector>
 #include "stream_pusher.hh"
+#include "stream_puller.hh"
 #include <QTimer>
 #include "header.hh"
 #include <QObject>
@@ -57,6 +58,9 @@ private:
   std::shared_ptr<QTimer> request_user_status_timer_;
 
   std::shared_ptr<StreamPusher> camera_pusher_;
+  
+  // stream-id -> puller
+  std::map<std::string, std::shared_ptr<StreamPuller>> stream_pullers_;
   std::map<std::string, UserStatus> user_map_;
 };
 

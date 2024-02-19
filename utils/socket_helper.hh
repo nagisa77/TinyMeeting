@@ -50,21 +50,6 @@ static void logAVPacket(const AVPacket* pkt) {
     spdlog::info(ss.str());
 }
 
-
-struct AVFrameDeleter {
-  void operator()(AVFrame* frame) const {
-    if (frame) {
-      av_frame_free(&frame);
-    }
-  }
-};
-
-using AVFramePtr = std::shared_ptr<AVFrame>;
-
-inline AVFramePtr createAVFramePtr() {
-    return AVFramePtr(av_frame_alloc(), AVFrameDeleter());
-}
-
 using JSON = nlohmann::json;
 
 using boost::asio::ip::tcp;
