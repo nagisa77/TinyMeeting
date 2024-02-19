@@ -63,8 +63,15 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
               user_map_ = user_map;
               
               std::vector<UserStatus> values;
-              for (const auto& pair : user_map_) {
-                  values.push_back(pair.second);
+              for (const auto& entry : user_map_) {
+                auto user_id = entry.first;
+                if (entry.second.is_video_on) {
+                  if (!stream_pullers_[user_id][kMediaTypeVideo]) {
+                    stream_pullers_[user_id][kMediaTypeVideo] = 
+                  }
+                }
+                
+                values.push_back(entry.second);
               }
               
               NotifyUserStatusUpdate(values);
@@ -80,12 +87,12 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
   }
 }
 
-void MeetingModel::OnStreamServerError(StreamPusher* pusher) {
-  if (pusher == camera_pusher_.get()) {
-    camera_pusher_->UnRegisterListener(this);
-    CameraCapture::getInstance()->UnRegister(camera_pusher_.get());
+void MeetingModel::OnPusherStreamServerError(MediaType media_type) {
+  if (media_type == kMediaTypeVideo) {
+    stream_pushers_[media_type]->UnRegisterListener(this);
+    CameraCapture::getInstance()->UnRegister(stream_pushers_[media_type].get());
     CameraCapture::getInstance()->Start(false);
-    camera_pusher_.reset();
+    stream_pushers_[media_type].reset();
     
     self_user_status_.is_video_on = false;
     self_user_status_.video_stream_id.clear();
@@ -139,9 +146,9 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
           
           if (media_type == kMediaTypeVideo) {
             std::string camere_stream_id = self_user_status_.user_id + "camera";
-            camera_pusher_ = std::make_shared<StreamPusher>(camere_stream_id, "127.0.0.1", 10086);
-            camera_pusher_->RegisterListener(this);
-            CameraCapture::getInstance()->Register(camera_pusher_.get());
+            stream_pushers_[media_type] = std::make_shared<StreamPusher>(camere_stream_id, "127.0.0.1", 10086, media_type);
+            stream_pushers_[media_type]->RegisterListener(this);
+            CameraCapture::getInstance()->Register(stream_pushers_[media_type].get());
             CameraCapture::getInstance()->Start(true);
             
             self_user_status_.is_video_on = true;

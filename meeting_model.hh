@@ -42,7 +42,7 @@ public:
   std::string GetMeetingId(); 
   
   // StreamPusherListener
-  void OnStreamServerError(StreamPusher* pusher) override;
+  void OnPusherStreamServerError(MediaType media_type) override;
 
 private:
   void NotifyJoinComplete(JoinMeetingResult result, const std::string& msg);
@@ -57,10 +57,10 @@ private:
   struct UserStatus self_user_status_;
   std::shared_ptr<QTimer> request_user_status_timer_;
 
-  std::shared_ptr<StreamPusher> camera_pusher_;
+  // pusher && puller
+  std::map<MediaType, std::shared_ptr<StreamPusher>> stream_pushers_;
+  std::map<std::string, std::map<MediaType, std::shared_ptr<StreamPuller>>> stream_pullers_;
   
-  // stream-id -> puller
-  std::map<std::string, std::shared_ptr<StreamPuller>> stream_pullers_;
   std::map<std::string, UserStatus> user_map_;
 };
 

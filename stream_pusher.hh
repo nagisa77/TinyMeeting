@@ -6,11 +6,11 @@
 #include <string>
 #include <boost/thread.hpp>
 #include <QObject>
+#include "header.hh"
 
-class StreamPusher;
 class StreamPusherListener {
 public:
-  virtual void OnStreamServerError(StreamPusher* pusher) = 0;
+  virtual void OnPusherStreamServerError(MediaType media_type) = 0;
 };
 
 class StreamPusher :
@@ -18,7 +18,7 @@ public QObject,
 public CameraCaptureListener {
   Q_OBJECT
 public:
-  StreamPusher(const std::string& stream_id, const std::string& ip, int port);
+  StreamPusher(const std::string& stream_id, const std::string& ip, int port, MediaType media_type);
   ~StreamPusher(); 
   void OnCameraFrame(std::shared_ptr<AVFRAME> frame) override;
   int CodecFrameToServer(); 
@@ -38,6 +38,7 @@ private:
   int port_;
   std::unique_ptr<boost::thread> codec_thread_;
   StreamPusherListener* listener_ = nullptr;
+  MediaType media_type_;
 };
 
 #endif // STREAM_PUSHER_HH 

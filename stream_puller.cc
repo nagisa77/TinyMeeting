@@ -14,12 +14,12 @@ extern "C" {
 using JSON = nlohmann::json;
 using boost::asio::ip::tcp;
 
-AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
+static inline AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
   return (AVFrame*)frame->frame_;
 }
 
-StreamPuller::StreamPuller(const std::string& stream_id, const std::string& ip, int port)
-: stream_id_(stream_id), ip_(ip), port_(port) {}
+StreamPuller::StreamPuller(const std::string& stream_id, const std::string& ip, int port, const std::string& user_id, MediaType media_type)
+: stream_id_(stream_id), ip_(ip), port_(port), user_id_(user_id), media_type_(media_type) {}
 
 
 StreamPuller::~StreamPuller() {
@@ -100,7 +100,7 @@ int StreamPuller::CodecFrameFromServer() {
               }
               
               if (listener_) {
-                listener_->OnPullFrame(stream_id_, av_frame);
+                listener_->OnPullFrame(user_id_, media_type_, av_frame);
               }
             }
           }

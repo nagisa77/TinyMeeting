@@ -1,12 +1,12 @@
 #include "stream_pusher.hh"
 #include "utils/socket_helper.hh"
 
-AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
+static inline AVFrame* AVFRAME2AVframe(std::shared_ptr<AVFRAME> frame) {
   return (AVFrame*)frame->frame_;
 }
 
-StreamPusher::StreamPusher(const std::string& stream_id, const std::string& ip, int port)
-  : frame_queue_(100), stream_id_(stream_id), ip_(ip), port_(port) {
+StreamPusher::StreamPusher(const std::string& stream_id, const std::string& ip, int port, MediaType media_type)
+  : frame_queue_(100), stream_id_(stream_id), ip_(ip), port_(port), media_type_(media_type) {
     codec_thread_ = std::make_unique<boost::thread>(&StreamPusher::CodecFrameToServer, this);
     
     connect(this, &StreamPusher::ShouldStopPushing, this, &StreamPusher::OnShouldStopPushing);
@@ -34,7 +34,7 @@ void StreamPusher::OnCameraFrame(std::shared_ptr<AVFRAME> frame) {
 
 void StreamPusher::OnShouldStopPushing() {
   if (listener_) {
-    listener_->OnStreamServerError(this);
+    listener_->OnPusherStreamServerError(media_type_);
   }
 }
 

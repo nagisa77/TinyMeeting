@@ -10,15 +10,15 @@
 
 class StreamPullerListener {
 public:
-  virtual void OnPullFrame(const std::string& stream_id, std::shared_ptr<AVFRAME> frame);
+  virtual void OnPullFrame(const std::string& user_id, MediaType media_type, std::shared_ptr<AVFRAME> frame) = 0;
 };
 
 class StreamPuller :
 public QObject {
   Q_OBJECT
 public:
-  StreamPuller(const std::string& stream_id, const std::string& ip, int port);
-  ~StreamPuller(); 
+  StreamPuller(const std::string& stream_id, const std::string& ip, int port, const std::string& user_id, MediaType media_type);
+  ~StreamPuller();
 
   int CodecFrameFromServer(); 
   void RegisterListener(StreamPullerListener* listener);
@@ -28,6 +28,9 @@ private:
   std::string stream_id_;
   std::string ip_;
   int port_;
+  std::string user_id_;
+  MediaType media_type_;
+
   
   StreamPullerListener* listener_ = nullptr;
 };
