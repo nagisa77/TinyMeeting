@@ -72,7 +72,7 @@ void MeetingModel::StartRequestUserStatusTimer(bool enable) {
 //                      continue;
                     }
                     auto puller = std::make_shared<StreamPuller>(entry.second.video_stream_id,
-                                                                  "127.0.0.1", 10086,
+                                                                  SEVER_IP, 10086,
                                                                   entry.second.user_id, kMediaTypeVideo);
                     stream_pullers_[user_id][kMediaTypeVideo] = puller;
                     puller->RegisterListener(this); 
@@ -158,7 +158,7 @@ void MeetingModel::EnableMedia(MediaType media_type, bool enable) {
           
           if (media_type == kMediaTypeVideo) {
             std::string camere_stream_id = self_user_status_.user_id + "camera";
-            stream_pushers_[media_type] = std::make_shared<StreamPusher>(camere_stream_id, "127.0.0.1", 10086, media_type);
+            stream_pushers_[media_type] = std::make_shared<StreamPusher>(camere_stream_id, SEVER_IP, 10086, media_type);
             stream_pushers_[media_type]->RegisterListener(this);
             CameraCapture::getInstance()->Register(stream_pushers_[media_type].get());
             CameraCapture::getInstance()->Start(true);

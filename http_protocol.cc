@@ -2,6 +2,9 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "http_service.hh"
+#include "header.hh"
+
+const std::string sever_address = std::string("http://") + SEVER_IP + ":3000/";
 
 BaseProtocol::BaseProtocol(QObject* parent) : QObject(parent) {
   connect(&watcher, &QFutureWatcher<QNetworkReply*>::finished,
@@ -15,7 +18,7 @@ QuickMeetingProtocol::QuickMeetingProtocol(QObject* parent)
 void QuickMeetingProtocol::MakeRequest(const ResponseHandler& handler) {
   auto& service = HttpService::getInstance();
   auto* reply =
-      service.post(QUrl("http://localhost:3000/quick_meeting"), QByteArray());
+      service.post(QUrl(std::string(sever_address + "quick_meeting").c_str()), QByteArray());
 
   connect(reply, &QNetworkReply::finished, [reply, handler]() {
     handler(reply);
@@ -43,7 +46,7 @@ void JoinMeetingProtocol::MakeRequest(const ResponseHandler& handler) {
   QByteArray data = doc.toJson();
 
   // 发送 POST 请求
-  auto* reply = service.post(QUrl("http://localhost:3000/join_meeting"), data);
+  auto* reply = service.post(QUrl(std::string(sever_address + "join_meeting").c_str()), data);
 
   connect(reply, &QNetworkReply::finished, [reply, handler]() {
     handler(reply);
@@ -71,7 +74,7 @@ void RequestUpStreamProtocol::MakeRequest(const ResponseHandler& handler) {
   QByteArray data = doc.toJson();
 
   // 发送 POST 请求
-  auto* reply = service.post(QUrl("http://localhost:3000/request_up_stream"), data);
+  auto* reply = service.post(QUrl(std::string(sever_address + "request_up_stream").c_str()), data);
 
   connect(reply, &QNetworkReply::finished, [reply, handler]() {
     handler(reply);
@@ -100,7 +103,7 @@ void UserStatusProtocol::MakeRequest(const ResponseHandler& handler) {
   QJsonDocument doc(json);
   QByteArray data = doc.toJson();
 
-  auto* reply = service.post(QUrl("http://localhost:3000/user_status"), data);
+  auto* reply = service.post(QUrl(std::string(sever_address + "user_status").c_str()), data);
 
   connect(reply, &QNetworkReply::finished, [reply, handler]() {
     handler(reply);
@@ -127,7 +130,7 @@ void RequestUserStatusProtocol::MakeRequest(const ResponseHandler& handler) {
   QByteArray data = doc.toJson();
 
   // 发送 POST 请求
-  auto* reply = service.post(QUrl("http://localhost:3000/request_user_status"), data);
+  auto* reply = service.post(QUrl(std::string(sever_address + "request_user_status").c_str()), data);
 
   connect(reply, &QNetworkReply::finished, [reply, handler]() {
     handler(reply);

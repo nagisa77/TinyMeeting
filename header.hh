@@ -2,6 +2,8 @@
 #define HEADER_HH
 #include <string> 
 
+#define SEVER_IP "192.168.50.165"
+
 enum RequestUserStatusResult {
   kRequestUserStatusResultSuccess = 0,
   kRequestUserStatusResultFailed, 
