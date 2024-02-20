@@ -5,6 +5,7 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 #import <CoreMedia/CoreMedia.h>
+#include "spdlog/spdlog.h"
 
 AVFRAME::AVFRAME() {
 }
@@ -99,6 +100,10 @@ void* CMSampleBufferRefToAVFRAME(void* ref) {
     sws_scale(sws_ctx, (const uint8_t* const*)frame->data, frame->linesize, 0, frame->height, converted_frame->data, converted_frame->linesize);
     
     CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
+    
+    // 应在此处释放原始frame的图像数据内存
+    av_freep(&frame->data[0]); // 释放由av_image_alloc分配的内存
+    av_frame_free(&frame);
     return converted_frame;
   }
 
@@ -112,5 +117,7 @@ void ReleaseAVFRAME(void* frame) {
     return;
   }
   AVFrame* av_frame = (AVFrame*)frame;
+  // 应在此处释放原始frame的图像数据内存
+  av_freep(&av_frame->data[0]); // 释放由av_image_alloc分配的内存
   av_frame_free(&av_frame);
 }
