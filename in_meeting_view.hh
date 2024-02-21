@@ -81,21 +81,24 @@ public:
   void UpdateTitle(const std::string& user_id, const std::string& meeting_id);
   void UpdateUserInfoViews(const std::vector<UserStatus>& user_status);
   void UpdateVideoViews(const std::vector<UserStatus>& user_status, const std::vector<std::shared_ptr<StreamPuller>>& stream_pullers);
+  void UpdateMeeingInfoToClipboard(const std::string& meeting_id);
+  void ShowToast(const std::string& toast);
 
 private slots:
-  void onAudioClicked();
-  void onVideoClicked();
-  void onScreenClicked();
+  void OnAudioClicked();
+  void OnVideoClicked();
+  void OnScreenClicked();
+  void OnInfomationClicked();
 
 private:
   void MakeConnections();
-  void ShowToast(const std::string& toast);
 
 private:
   std::shared_ptr<InMeetingController> controller_;
   InMeetingViewContainer* user_info_view_container_ = nullptr;
   QWidget* stream_control_container_ = nullptr;
   QWidget* memberListContainer_ = nullptr;
+  QPushButton* meeting_information_button_ = nullptr;
   QPushButton* audio_button_ = nullptr;
   QPushButton* video_button_ = nullptr;
   QPushButton* screen_button_ = nullptr;

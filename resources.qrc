@@ -5,5 +5,6 @@
         <file alias="audio_icon">resources/audio.png</file>
         <file alias="screen_share_icon">resources/screen-share.png</file>
         <file alias="video_icon">resources/video.png</file>
+        <file alias="information_icon">resources/information.png</file>
     </qresource>
 </RCC>

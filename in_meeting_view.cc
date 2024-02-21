@@ -3,10 +3,13 @@
 #include <QVBoxLayout>
 #include <spdlog/spdlog.h>
 #include "in_meeting_controller.hh"
+#include "ui_utils/toast.hh"
 #include <QApplication>
 #include <QScreen>
 #include <QLabel>
 #include <QPainter>
+#include <QClipboard>
+
 extern "C" {
 #include <libavutil/avutil.h>
 #include <libavutil/imgutils.h>
@@ -200,14 +203,17 @@ InMeetingView::InMeetingView(QWidget* parent)
       stream_control_container_->setLayout(stream_control_container_layout);
 
       // 创建按钮
+      meeting_information_button_ = new QPushButton(this);
       audio_button_ = new QPushButton(this);
       video_button_ = new QPushButton(this);
       screen_button_ = new QPushButton(this);
       
+      meeting_information_button_->setIcon(QIcon(":/information_icon"));
       audio_button_->setIcon(QIcon(":/audio_icon"));
       video_button_->setIcon(QIcon(":/video_icon"));
       screen_button_->setIcon(QIcon(":/screen_share_icon"));
       
+      meeting_information_button_->setFixedSize(50, 50);
       audio_button_->setFixedSize(50, 50);
       video_button_->setFixedSize(50, 50);
       screen_button_->setFixedSize(50, 50);
@@ -222,6 +228,7 @@ InMeetingView::InMeetingView(QWidget* parent)
       "background-color: #9c528b;" // 按下状态下的背景颜色
       "}";
 
+      meeting_information_button_->setStyleSheet(buttonStyle);
       audio_button_->setStyleSheet(buttonStyle);
       video_button_->setStyleSheet(buttonStyle);
       screen_button_->setStyleSheet(buttonStyle);
@@ -229,6 +236,7 @@ InMeetingView::InMeetingView(QWidget* parent)
 
       // 添加按钮到布局
       stream_control_container_layout->addStretch();
+      stream_control_container_layout->addWidget(meeting_information_button_);
       stream_control_container_layout->addWidget(audio_button_);
       stream_control_container_layout->addWidget(video_button_);
       stream_control_container_layout->addWidget(screen_button_);
@@ -269,31 +277,44 @@ void InMeetingView::UpdateVideoViews(const std::vector<UserStatus>& user_status,
   }
 }
 
+void InMeetingView::UpdateMeeingInfoToClipboard(const std::string& meeting_id) {
+  QClipboard *clipboard = QApplication::clipboard();
+  clipboard->setText(meeting_id.c_str());
+}
+
 InMeetingView::~InMeetingView() {
     // 析构函数逻辑（如有必要）
 }
 
 void InMeetingView::MakeConnections() {
-    connect(audio_button_, &QPushButton::clicked, this, &InMeetingView::onAudioClicked);
-    connect(video_button_, &QPushButton::clicked, this, &InMeetingView::onVideoClicked);
-    connect(screen_button_, &QPushButton::clicked, this, &InMeetingView::onScreenClicked);
+    connect(audio_button_, &QPushButton::clicked, this, &InMeetingView::OnAudioClicked);
+    connect(video_button_, &QPushButton::clicked, this, &InMeetingView::OnVideoClicked);
+    connect(screen_button_, &QPushButton::clicked, this, &InMeetingView::OnScreenClicked);
+    connect(meeting_information_button_, &QPushButton::clicked, this, &InMeetingView::OnInfomationClicked);
 }
 
-void InMeetingView::onAudioClicked() {
+void InMeetingView::OnAudioClicked() {
     spdlog::info("audio click");
     // 这里可以添加额外的逻辑
 }
 
-void InMeetingView::onVideoClicked() {
+void InMeetingView::OnVideoClicked() {
   controller_->HandleVideoClick();
 }
 
-void InMeetingView::onScreenClicked() {
+void InMeetingView::OnScreenClicked() {
     spdlog::info("screen click");
     // 这里可以添加额外的逻辑
 }
 
-void InMeetingView::ShowToast(const std::string& toast) {
-    // 显示提示信息
+void InMeetingView::OnInfomationClicked() {
+  spdlog::info("information click");
+  controller_->HandleMeetingInfomationClick();
+}
+
+
+void InMeetingView::ShowToast(const std::string& toast_str) {
+  Toast* toast = new Toast(this);
+  toast->showMessage(toast_str, 3000); // 显示3秒
 }
 

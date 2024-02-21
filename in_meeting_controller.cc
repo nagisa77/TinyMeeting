@@ -4,6 +4,7 @@
 #include <spdlog/spdlog.h>
 #include "window_manager.hh"
 
+
 VideoViewController::VideoViewController(std::shared_ptr<StreamPuller> puller, VideoView* view)
 : puller_(puller), view_(view) {
   puller_->RegisterListener(this);
@@ -30,6 +31,11 @@ InMeetingController::~InMeetingController() {
 
 void InMeetingController::HandleVideoClick() {
   MeetingModel::getInstance().EnableMedia(kMediaTypeVideo, true);
+}
+
+void InMeetingController::HandleMeetingInfomationClick() {
+  view_->UpdateMeeingInfoToClipboard(MeetingModel::getInstance().GetMeetingId()); 
+  view_->ShowToast("Meeting information copied to clipboard.");
 }
 
 void InMeetingController::PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) {
