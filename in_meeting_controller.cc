@@ -38,6 +38,10 @@ void InMeetingController::HandleMeetingInfomationClick() {
   view_->ShowToast("Meeting information copied to clipboard.");
 }
 
+void InMeetingController::HandleExitClick() {
+  MeetingModel::getInstance().ExitMeeting();
+}
+
 void InMeetingController::PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) {
   
 }
@@ -62,3 +66,11 @@ void InMeetingController::OnUserStatusUpdate(const std::vector<UserStatus>& user
   }
 }
 
+void InMeetingController::LeaveMeetingComplete(LeaveMeetingResult result, const std::string& msg) {
+  if (result == kLeaveMeetingResultSuccess) {
+    WindowManager::getInstance().PushPremeetingView();
+    WindowManager::getInstance().PopInmeetingView();
+  } else {
+    view_->ShowToast(msg);
+  }
+}

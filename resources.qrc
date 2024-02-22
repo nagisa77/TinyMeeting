@@ -6,5 +6,6 @@
         <file alias="screen_share_icon">resources/screen-share.png</file>
         <file alias="video_icon">resources/video.png</file>
         <file alias="information_icon">resources/information.png</file>
+        <file alias="exit_icon">resources/exit.png</file>
     </qresource>
 </RCC>

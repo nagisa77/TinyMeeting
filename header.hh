@@ -14,6 +14,13 @@ enum JoinMeetingResult {
   kJoinMeetingResultFailed,
 };
 
+enum LeaveMeetingResult {
+  kLeaveMeetingResultSuccess = 0,
+  kLeaveMeetingResultUserNotExist,
+  kLeaveMeetingResultMeetingNotExist,
+  kLeaveMeetingResultNetworkError,
+};
+
 enum PushMediaResult {
   kPushMediaResultSuccess = 0,
   kPushMediaResultFailed,

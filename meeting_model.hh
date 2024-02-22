@@ -15,6 +15,7 @@
 class MeetingModelDelegate {
 public:
   virtual void JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) {}
+  virtual void LeaveMeetingComplete(LeaveMeetingResult result, const std::string& msg) {}
   virtual void PushMediaComplete(MediaType media_type, PushMediaResult result, const std::string& msg) {}
   virtual void OnUserStatusUpdate(const std::vector<UserStatus>& user_status) {}
 };
@@ -37,6 +38,7 @@ public:
   void QuickMeeting(const std::string& userId);
   void EnableMedia(MediaType media_type, bool enable);
   void JoinMeeting(const std::string& userId, const std::string& meetingId);
+  void ExitMeeting();
   void HandleUserStatus(const QString& meetingId, bool mic, bool video,
                   bool screenShare);
   
@@ -53,6 +55,7 @@ public:
 
 private:
   void NotifyJoinComplete(JoinMeetingResult result, const std::string& msg);
+  void NotifyLeaveComplete(LeaveMeetingResult result, const std::string& msg);
   void NotifyPushMediaCompelete(MediaType media_type, PushMediaResult result, const std::string& msg);
   void NotifyUserStatusUpdate(const std::vector<UserStatus>& user_status);
   void StartRequestUserStatusTimer(bool enable);

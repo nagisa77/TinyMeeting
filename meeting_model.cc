@@ -228,6 +228,34 @@ void MeetingModel::JoinMeeting(const std::string& userId, const std::string& mee
   });
 }
 
+void MeetingModel::ExitMeeting() {
+  LeaveMeetingProtocol leave_meeting(self_user_status_.user_id, current_meeting_id_);
+  leave_meeting.MakeRequest([=](QNetworkReply* reply) {
+    if (reply->error() == QNetworkReply::NoError) {
+      auto response = reply->readAll();
+      QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+      if (!jsonDoc.isNull() && jsonDoc.isObject()) {
+        auto jsonObject = jsonDoc.object();
+        int result = jsonObject["result"].toInt();
+        QString msg = jsonObject["msg"].toString();
+        
+        spdlog::info("leave meeting result: {}, msg: {}", result, msg.toStdString());
+        
+        NotifyLeaveComplete((LeaveMeetingResult)result, msg.toStdString());
+        
+        if (result == kLeaveMeetingResultSuccess) {
+          self_user_status_ = UserStatus();
+          current_meeting_id_.clear();
+        }
+      }
+    } else {
+      spdlog::info("Error in network reply: {}",
+                   reply->errorString().toStdString());
+      NotifyLeaveComplete(kLeaveMeetingResultNetworkError, "network error");
+    }
+  });
+}
+
 void MeetingModel::HandleUserStatus(const QString& meetingId, bool mic, bool video,
                                     bool screenShare) {
   // 实现用户状态更新逻辑
@@ -249,6 +277,13 @@ void MeetingModel::NotifyJoinComplete(JoinMeetingResult result, const std::strin
   auto delegates(delegates_);
   for (auto delegate : delegates) {
     delegate->JoinMeetingComplete(result, msg);
+  }
+}
+
+void MeetingModel::NotifyLeaveComplete(LeaveMeetingResult result, const std::string& msg) {
+  auto delegates(delegates_);
+  for (auto delegate : delegates) {
+    delegate->LeaveMeetingComplete(result, msg);
   }
 }
 

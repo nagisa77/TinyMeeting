@@ -54,6 +54,32 @@ void JoinMeetingProtocol::MakeRequest(const ResponseHandler& handler) {
   });
 }
 
+LeaveMeetingProtocol::LeaveMeetingProtocol(const std::string& user_id, const std::string& meeting_id, QObject* parent)
+  : BaseProtocol(parent), user_id_(user_id), meeting_id_(meeting_id) {}
+
+LeaveMeetingProtocol::~LeaveMeetingProtocol() {}
+
+void LeaveMeetingProtocol::MakeRequest(const ResponseHandler& handler) {
+  auto& service = HttpService::getInstance();
+
+  // 创建一个包含 user_id 和 meeting_id 的 JSON 对象
+  QJsonObject json;
+  json["user_id"] = QString::fromStdString(user_id_);
+  json["meeting_id"] = QString::fromStdString(meeting_id_);
+
+  // 将 JSON 对象转换为 QByteArray
+  QJsonDocument doc(json);
+  QByteArray data = doc.toJson();
+
+  // 发送 POST 请求
+  auto* reply = service.post(QUrl(std::string(sever_address + "leave_meeting").c_str()), data);
+
+  connect(reply, &QNetworkReply::finished, [reply, handler]() {
+    handler(reply);
+    reply->deleteLater();
+  });
+}
+
 RequestUpStreamProtocol::RequestUpStreamProtocol(const std::string& user_id, const std::string& meeting_id, int media_type, QObject* parent) : BaseProtocol(parent), user_id_(user_id), meeting_id_(meeting_id), media_type_(media_type) {
 }
 

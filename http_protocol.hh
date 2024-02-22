@@ -50,6 +50,20 @@ private:
   std::string meeting_id_;
 };
 
+class LeaveMeetingProtocol : public BaseProtocol {
+  Q_OBJECT
+
+ public:
+  explicit LeaveMeetingProtocol(const std::string& user_id, const std::string& meeting_id, QObject* parent = nullptr);
+  ~LeaveMeetingProtocol() override;
+
+  void MakeRequest(const ResponseHandler& handler) override;
+  
+private:
+  std::string user_id_;
+  std::string meeting_id_;
+};
+
 class RequestUpStreamProtocol : public BaseProtocol {
   Q_OBJECT
 

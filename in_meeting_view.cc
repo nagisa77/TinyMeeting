@@ -207,16 +207,19 @@ InMeetingView::InMeetingView(QWidget* parent)
       audio_button_ = new QPushButton(this);
       video_button_ = new QPushButton(this);
       screen_button_ = new QPushButton(this);
+      exit_button_ = new QPushButton(this);
       
       meeting_information_button_->setIcon(QIcon(":/information_icon"));
       audio_button_->setIcon(QIcon(":/audio_icon"));
       video_button_->setIcon(QIcon(":/video_icon"));
       screen_button_->setIcon(QIcon(":/screen_share_icon"));
+      exit_button_->setIcon(QIcon(":/exit_icon"));
       
       meeting_information_button_->setFixedSize(50, 50);
       audio_button_->setFixedSize(50, 50);
       video_button_->setFixedSize(50, 50);
       screen_button_->setFixedSize(50, 50);
+      exit_button_->setFixedSize(50, 50);
 
       // 设置按钮样式
       QString buttonStyle =     "QPushButton {"
@@ -232,6 +235,7 @@ InMeetingView::InMeetingView(QWidget* parent)
       audio_button_->setStyleSheet(buttonStyle);
       video_button_->setStyleSheet(buttonStyle);
       screen_button_->setStyleSheet(buttonStyle);
+      exit_button_->setStyleSheet(buttonStyle);
 
 
       // 添加按钮到布局
@@ -240,6 +244,7 @@ InMeetingView::InMeetingView(QWidget* parent)
       stream_control_container_layout->addWidget(audio_button_);
       stream_control_container_layout->addWidget(video_button_);
       stream_control_container_layout->addWidget(screen_button_);
+      stream_control_container_layout->addWidget(exit_button_);
       stream_control_container_layout->addStretch();
 
       layout->addSpacing(15);
@@ -291,6 +296,7 @@ void InMeetingView::MakeConnections() {
     connect(video_button_, &QPushButton::clicked, this, &InMeetingView::OnVideoClicked);
     connect(screen_button_, &QPushButton::clicked, this, &InMeetingView::OnScreenClicked);
     connect(meeting_information_button_, &QPushButton::clicked, this, &InMeetingView::OnInfomationClicked);
+    connect(exit_button_, &QPushButton::clicked, this, &InMeetingView::OnExitClicked);
 }
 
 void InMeetingView::OnAudioClicked() {
@@ -312,9 +318,16 @@ void InMeetingView::OnInfomationClicked() {
   controller_->HandleMeetingInfomationClick();
 }
 
+void InMeetingView::OnExitClicked() {
+  spdlog::info("exit click"); 
+  controller_->HandleExitClick();
+}
 
 void InMeetingView::ShowToast(const std::string& toast_str) {
   Toast* toast = new Toast(this);
   toast->showMessage(toast_str, 3000); // 显示3秒
 }
 
+void InMeetingView::closeEvent(QCloseEvent *event) {
+  OnExitClicked();
+}

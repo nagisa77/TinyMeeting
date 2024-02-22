@@ -83,12 +83,14 @@ public:
   void UpdateVideoViews(const std::vector<UserStatus>& user_status, const std::vector<std::shared_ptr<StreamPuller>>& stream_pullers);
   void UpdateMeeingInfoToClipboard(const std::string& meeting_id);
   void ShowToast(const std::string& toast);
-
+  void closeEvent(QCloseEvent *event) override;
+  
 private slots:
   void OnAudioClicked();
   void OnVideoClicked();
   void OnScreenClicked();
   void OnInfomationClicked();
+  void OnExitClicked();
 
 private:
   void MakeConnections();
@@ -102,6 +104,7 @@ private:
   QPushButton* audio_button_ = nullptr;
   QPushButton* video_button_ = nullptr;
   QPushButton* screen_button_ = nullptr;
+  QPushButton* exit_button_ = nullptr;
 };
 
 #endif  // In_MEETING_VIEW_HH
