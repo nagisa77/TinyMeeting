@@ -16,6 +16,7 @@ class PreMeetingView : public QWidget {
   explicit PreMeetingView(QWidget* parent = nullptr);
   ~PreMeetingView();
   void MakeConnections();
+  void UpdateUserId(const std::string& user_id);
   
   void ShowToast(const std::string& toast);
 

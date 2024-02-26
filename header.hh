@@ -4,6 +4,10 @@
 
 #define SEVER_IP "192.168.50.165"
 
+#define COMPANY_NAME "tim"
+
+#define APP_NAME "TinyMeeting"
+
 enum RequestUserStatusResult {
   kRequestUserStatusResultSuccess = 0,
   kRequestUserStatusResultFailed, 

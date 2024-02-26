@@ -155,11 +155,21 @@ PreMeetingView::PreMeetingView(QWidget* parent) : QWidget(parent) {
   MakeConnections();
   
   update();
+  
+  QTimer::singleShot(0, this, [this]() {
+    controller_->HandleUpdateUserId();
+  });
 }
 
 void PreMeetingView::ShowToast(const std::string& toast_str) {
   Toast* toast = new Toast(this);
   toast->showMessage(toast_str, 3000); // 显示3秒
+}
+
+void PreMeetingView::UpdateUserId(const std::string& user_id) {
+  if (user_name_edit_) {
+    user_name_edit_->setText(user_id.c_str()); 
+  }
 }
 
 void PreMeetingView::MakeConnections() {

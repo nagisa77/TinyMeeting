@@ -60,6 +60,8 @@ private:
   void NotifyUserStatusUpdate(const std::vector<UserStatus>& user_status);
   void StartRequestUserStatusTimer(bool enable);
   void SyncUserStatus();
+  void LoadUserId();
+  void SaveUserId();
   
 private:
   std::set<MeetingModelDelegate*> delegates_;

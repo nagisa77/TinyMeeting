@@ -12,6 +12,7 @@ class PreMeetingController : public MeetingModelDelegate {
 
   void HandleQuickMeeting(const std::string& user_id);
   void HandleJoinMeeting(const std::string& user_id, const std::string& meeting_id);
+  void HandleUpdateUserId(); 
   void JoinMeetingComplete(JoinMeetingResult result, const std::string& msg) override;
 
 private:

@@ -1,6 +1,7 @@
 #include "pre_meeting_controller.hh"
 
 #include <spdlog/spdlog.h>
+#include <QTimer>
 #include "window_manager.hh"
 
 PreMeetingController::PreMeetingController(PreMeetingView* view)
@@ -10,6 +11,10 @@ PreMeetingController::PreMeetingController(PreMeetingView* view)
 
 PreMeetingController::~PreMeetingController() {
   MeetingModel::getInstance().UnRegister(this);
+}
+
+void PreMeetingController::HandleUpdateUserId() {
+  view_->UpdateUserId(MeetingModel::getInstance().GetSelfUserId());
 }
 
 void PreMeetingController::HandleQuickMeeting(const std::string& user_id) {

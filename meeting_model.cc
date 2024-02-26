@@ -6,11 +6,14 @@
 #include <QJsonObject>
 #include <QObject>
 #include <QWidget>
+#include <QSettings>
 #include "media_capture/camera_capture.hh"
 
 #include "http_protocol.hh"
 
-MeetingModel::MeetingModel() {}
+MeetingModel::MeetingModel() {
+  LoadUserId();
+}
 
 MeetingModel& MeetingModel::getInstance() {
   static MeetingModel* model = new MeetingModel();
@@ -198,6 +201,22 @@ void MeetingModel::SyncUserStatus() {
   });
 }
 
+void MeetingModel::LoadUserId() {
+  QSettings settings(COMPANY_NAME, APP_NAME);
+  // 读取user_id，如果不存在则返回一个空字符串
+  self_user_status_.user_id = settings.value("user_id", "").toString().toStdString();
+}
+
+void MeetingModel::SaveUserId() {
+  if (self_user_status_.user_id.empty()) {
+    return;
+  }
+  
+  QSettings settings(COMPANY_NAME, APP_NAME);
+  
+  settings.setValue("user_id", self_user_status_.user_id.c_str());
+}
+
 void MeetingModel::JoinMeeting(const std::string& userId, const std::string& meetingId) {
   JoinMeetingProtocol join_meeting(userId, meetingId);
   
@@ -217,6 +236,7 @@ void MeetingModel::JoinMeeting(const std::string& userId, const std::string& mee
         NotifyJoinComplete((JoinMeetingResult)result, msg.toStdString());
         
         if (result == kJoinMeetingResultSuccess) {
+          SaveUserId();
           StartRequestUserStatusTimer(true);
         }
       }
